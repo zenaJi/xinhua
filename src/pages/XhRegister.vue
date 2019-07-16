@@ -12,19 +12,24 @@
         <div  class="FooterBoxInput">
             <div class="FooterBoxInput-input">
             	<div></div>
-							<div></div>
-							<div></div>
-            	<input @blur="phoneCheck()" v-model="userPhone" type="text" placeholder="请输入手机号">
-            	<input v-model="checkCoad"  type="text" placeholder="图片验证码">
+				<div></div>
+				<div></div>
+				<h2 id="ID" :class="{active:(IdType==1)}" @click="ChangeId()">手机号</h2>
+				<h2 id="PASS" :class="{active:(PassType==1)}" @click="ChangePass()">图片验证码</h2>
+				<h2 id="COAD" :class="{active:(codeType==1)}" @click="ChangeCode()">短信验证码</h2>
+				<h2 id="PIC" :class="{active:(picType==1)}" @click="ChangePic()">请设置密码</h2>
+				
+            	<input ref="Phone" @blur="phoneCheck()" v-model="userPhone" type="text" placeholder="">
+            	<input ref="Pic"  @blur="piccheck()" v-model="checkCoad"  type="text" placeholder="">
             	<img @click="checkCode()" :src="base64Str" class="picCode" >
-							<input v-model="noteCoad" type="text" placeholder="短信验证码">
-							<button  @click="MessageCoad()" class="MessageCoad">发送验证码</button>
-							<h1 v-if="flag" class="TimeCoad">{{Time}}后重新发送</h1>
-							<input  v-model="userPass"  @blur="passCheck()" type="password" placeholder="请设置密码">
-							 <p class="FooterBoxTreaty">
-							  <span >已同意<router-link to="/XhLoginTreaty" style="color: #0c77d3;" href="#">《用户注册协议》</router-link></span>
-							</p>
-							<input class="FooterBoxSign" @click="LoginPhonePost()" type="button" value="注册">
+				<input ref="Coad" @blur="notecoad()" v-model="noteCoad" type="text" placeholder="">
+				<button  @click="MessageCoad()" class="MessageCoad">发送验证码</button>
+				<h1 v-if="flag" class="TimeCoad">{{Time}}后重新发送</h1>
+				<input ref="YZ" v-model="userPass"  @blur="passCheck()" type="password" placeholder="">
+				<p class="FooterBoxTreaty">
+					<span >已同意<router-link to="/XhLoginTreaty" style="color: #0c77d3;" href="#">《用户注册协议》</router-link></span>
+				</p>
+				<input class="FooterBoxSign" @click="LoginPhonePost()" type="button" value="注册">
             </div>
         </div>
       </div>
@@ -46,16 +51,44 @@
 				pass:"",
 				base64Str:"",
 				noteCoad:'',
-				Time:""
+				Time:"",
+				IdType:'',
+				PassType:'',
+				codeType:'',
+				picType:''
       }
     },
 		created() {
 			this.checkCode()
 		},
 		methods:{
+			// 效果字体
+			ChangeId(){
+				this.IdType=1
+				this.$refs.Phone.focus()
+				
+			},
+			ChangePass(){
+				this.PassType=1
+				// this.$refs.PASS.focus()
+				this.$refs.Pic.focus()
+			},
+			ChangeCode(){
+				this.codeType=1
+				this.$refs.Coad.focus()
+			},
+			ChangePic(){
+				this.picType=1
+				this.$refs.YZ.focus()
+			},
 			// 手机号验证
 			phoneCheck(){
 				var regPhone=/^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\d{8}$/;
+				if(this.userPhone!=""){
+					this.IdType=1
+				}else if(this.userPhone==""){
+					this.IdType=2
+				}
 				if(regPhone.test(this.userPhone)==true){
 					this.PhoneMsg=''
 					this.phone=1;
@@ -63,6 +96,7 @@
 					this.$toast("手机号格式错误！")
 				}
 			},
+			
 			// 图片验证码
 			checkCode(){
 				this.$axios.get("/api/xinhua/verification/code").then((res)=>{
@@ -75,6 +109,13 @@
 						this.$toast("请求发送失败！")
 					})
 			},
+			piccheck(){
+				if(this.checkCoad!=""){
+					this.PassType=1
+				}else if(this.checkCoad==""){
+					this.PassType=2
+				}
+			},	
 			// 验证码
     	MessageCoad(){
 				if(this.phone==1){
@@ -105,9 +146,21 @@
 					this.$toast("请输入正确的手机格式")
 				}
 			},
+			notecoad(){
+				if(this.noteCoad!=""){
+					this.codeType=1
+				}else if(this.noteCoad==""){
+					this.codeType=2
+				}
+			},		
 			// 密码验证
 			passCheck(){
 					this.pass=1;
+					if(this.userPass!=""){
+						this.picType=1
+					}else if(this.userPass==""){
+						this.picType=2
+					}
 			},
 			// 总验证
 			LoginPhonePost(){
@@ -138,6 +191,10 @@
 </script>
 
 <style scoped>
+	.active{
+		font-size:.3rem !important;
+		line-height:.2rem !important;
+	}
   .LoginLogon{
     width: 100%;
     height: 100%;
@@ -159,6 +216,7 @@
 		 position: absolute;
 		 top: 1.2rem; 
 		 right: .2rem;
+		 border-radius: .1rem;
 	}
 	.MessageCoad{
 		height: .7rem;
@@ -170,6 +228,8 @@
 		color: #FFFFFF;
 		font-size: .2rem;
 		line-height: .7rem;
+		border-radius: .1rem;
+		border: 0;
 	}
 	.TimeCoad{
 		height: .7rem;
@@ -217,7 +277,9 @@
     float: left;
     margin-top:.6rem ;
     border-radius: .1rem;
+	
   }
+  
 	.LoginLogon .LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-input{
 		width: 100%;
 		float: left;
@@ -238,6 +300,29 @@
 	}
 	.LoginLogon .LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-input div:nth-child(3){
 		top: 3.3rem;
+	}
+	.LoginLogon .LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-input h2{
+		line-height: 1.1rem;
+		width: 100%;
+		text-align: left;
+		color:#bbbbbb ;
+		font-size:.35rem;
+		position: absolute;
+		left: .3rem;
+		transition: all .5s;
+		font-weight: normal;
+	}
+	.LoginLogon .LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-input #ID{
+		top: 0rem ;
+	}
+	.LoginLogon .LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-input #PASS{
+		top: 1.1rem ;
+	}
+	.LoginLogon .LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-input #COAD{
+		top: 2.3rem ;
+	}
+	.LoginLogon .LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-input #PIC{
+		top: 3.4rem ;
 	}
 	.LoginLogon .LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-input input{
 		display: block;

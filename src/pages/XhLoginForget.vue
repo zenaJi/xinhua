@@ -13,13 +13,17 @@
 						<div></div>
 						<div></div>
 						<div></div>
-						<input @blur="phoneCheck()" v-model="userPhone" type="text" placeholder="请输入手机号">
-						<input v-model="checkCoad"  type="text" placeholder="图片验证码">
+						<h2 id="ID" :class="{active:(IdType==1)}" @click="ChangeId()">手机号</h2>
+						<h2 id="PASS" :class="{active:(PassType==1)}" @click="ChangePass()">图片验证码</h2>
+						<h2 id="COAD" :class="{active:(codeType==1)}" @click="ChangeCode()">短信验证码</h2>
+						<h2 id="PIC" :class="{active:(picType==1)}" @click="ChangePic()">请设置密码</h2>
+						<input ref="Phone" @blur="phoneCheck()" v-model="userPhone" type="text" placeholder="">
+						<input ref="Pic"  @blur="piccheck()" v-model="checkCoad"  type="text" placeholder="">
 						<img @click="checkCode()" :src="base64Str" class="picCode" >
-						<input v-model="noteCoad" type="text" placeholder="短信验证码">
+						<input ref="Coad" @blur="notecoad()" v-model="noteCoad" type="text" placeholder="">
 						<button  @click="MessageCoad()" class="MessageCoad">发送验证码</button>
 						<h1 v-if="flag" class="TimeCoad">{{Time}}后重新发送</h1>
-						<input  v-model="userPass"  @blur="passCheck()" type="password" placeholder="请设置新密码">
+						<input ref="YZ" v-model="userPass"  @blur="passCheck()" type="password" placeholder="">
 						<input class="FooterBoxSign" @click="LoginPhonePost()" type="button" value="修改密码">
 					</div>
 				</div>
@@ -41,7 +45,11 @@
 				noteCoad:'',
 				Time:'',
 				userPass:'',
-				pass:''
+				pass:'',
+				IdType:'',
+				PassType:'',
+				codeType:'',
+				picType:''
 			}
 			
 		},
@@ -49,8 +57,33 @@
 			this.checkCode()
 		},
 		methods:{
+			// 效果字体
+			ChangeId(){
+				this.IdType=1
+				this.$refs.Phone.focus()
+				
+			},
+			ChangePass(){
+				this.PassType=1
+				// this.$refs.PASS.focus()
+				this.$refs.Pic.focus()
+			},
+			ChangeCode(){
+				this.codeType=1
+				this.$refs.Coad.focus()
+			},
+			ChangePic(){
+				this.picType=1
+				this.$refs.YZ.focus()
+			},
+			// 手机验证
 		phoneCheck(){
 				var regPhone=/^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\d{8}$/;
+				if(this.userPhone!=""){
+					this.IdType=1
+				}else if(this.userPhone==""){
+					this.IdType=2
+				}
 				if(regPhone.test(this.userPhone)==true){
 					this.phone=1;
 				}else{
@@ -68,6 +101,13 @@
 					this.$toast("请求发送失败！")
 			})
 		},
+		piccheck(){
+			if(this.checkCoad!=""){
+				this.PassType=1
+			}else if(this.checkCoad==""){
+				this.PassType=2
+			}
+		},	
 		MessageCoad(){
 			if(this.phone==1){
 				var url='/api/xinhua/verification/update'
@@ -96,8 +136,20 @@
 				this.$toast("请输入正确的手机格式")
 			}
 		},
+		notecoad(){
+			if(this.noteCoad!=""){
+				this.codeType=1
+			}else if(this.noteCoad==""){
+				this.codeType=2
+			}
+		},
 		passCheck(){
 				this.pass=1;
+				if(this.userPass!=""){
+					this.picType=1
+				}else if(this.userPass==""){
+					this.picType=2
+				}
 		},
 		LoginPhonePost(){
 				if(this.phone==1&&this.pass==1){
@@ -121,6 +173,10 @@
 </script>
 
 <style scoped>
+	.active{
+		font-size:.3rem !important;
+		line-height:.2rem !important;
+	}
 	.LoginForget{
 		width: 100%;
 		height: 100%;
@@ -142,6 +198,7 @@
 		 position: absolute;
 		 top: 1.2rem; 
 		 right: .2rem;
+		 border-radius: .1rem;
 	}
 	.MessageCoad{
 		height: .7rem;
@@ -153,6 +210,8 @@
 		color: #FFFFFF;
 		font-size: .2rem;
 		line-height: .7rem;
+		border-radius: .1rem;
+		border: 0;
 	}
 	.TimeCoad{
 		height: .7rem;
@@ -221,6 +280,29 @@
 	}
 	.LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-post div:nth-child(3){
 		top: 3.3rem;
+	}
+	.LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-post h2{
+		line-height: 1.1rem;
+		width: 100%;
+		text-align: left;
+		color:#bbbbbb ;
+		font-size:.35rem;
+		position: absolute;
+		left: .3rem;
+		transition: all .5s;
+		font-weight: normal;
+	}
+	.LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-post #ID{
+		top: 0rem ;
+	}
+	.LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-post #PASS{
+		top: 1.1rem ;
+	}
+	.LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-post #COAD{
+		top: 2.3rem ;
+	}
+	.LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-post #PIC{
+		top: 3.4rem ;
 	}
 	.LoginForgetFooter .LoginFooterBox .FooterBoxInput .FooterBoxInput-post input{
 		display: block;
