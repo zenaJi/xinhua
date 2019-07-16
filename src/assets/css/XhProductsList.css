@@ -405,6 +405,7 @@ color: rgb(153, 153, 153);
 }
 .van-dropdown-menu{
   height: .5rem;
+  position: absolute;
 }
 .van-dropdown-menu__title{
   font-size: .12rem!important;
@@ -456,9 +457,31 @@ color: rgb(153, 153, 153);
 .gridProductsListboximg{
   height: 4.7rem;
 }
-/*.pXhProductsListshuang{*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  flex-wrap: wrap;*/
-/*  width: 6.3rem;*/
-/*}*/
+.XhProductsListdropdown_zonghe_cs{
+  transition: all 0.3s;
+  position: fixed;
+  background-color: white;
+  z-index:15;
+  font-size: 14px;
+  top:-0.2rem;
+
+}
+.XhProductsListdropdown_zonghe_cs_change{
+  transition: all 0.3s;
+  position: fixed;
+  background-color: white;
+  z-index:15;
+  font-size: 14px;
+  top:1.7rem;
+}
+
+.XhProductsListdropdown-zonghe-cs>div{
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 0 0.8rem;
+  margin: 0.3rem 0;
+}
+.cs_red{
+  color: red;
+}
