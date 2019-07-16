@@ -2,7 +2,7 @@
   <div class="XhSearchList">
     <ul class="XhSearchList-box" v-if="title">
       <li class="XhSearchList-wrapper"  v-for="(item,index) in pendingData" :key="index">
-        <span class="XhSearchList-column">{{item.name}}</span>
+        <span class="XhSearchList-column" @click="searchToList(item.name)">{{item.name}}</span>
         <van-icon class="XhSearchList-icon" name="exchange" />
       </li>
     </ul>
@@ -17,6 +17,11 @@
           title:String,
           pendingData:Array,
         },
+        methods:{
+          searchToList(key){
+            this.$router.push({path: '/XhProductsList', query: {keyword: key}})
+          }
+        }
     }
 </script>
 

@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import api from '../XinHuaApi'
   import XhProductDetailfooter from '../components/productDetail/XhProductDetailfooter'
   import XhMyEvaluationtop from '../components/MyEvaluation/XhMyEvaluationtop'
   import myXhMyEvaluationinner from '../components/MyEvaluation/myXhMyEvaluationinner'
