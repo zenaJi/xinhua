@@ -144,7 +144,7 @@
                     index_obj["indexListBrach"]=array
                   }
                   this.indexListTheme.push(index_obj)
-                  console.log(this.indexListTheme);
+                  // console.log(this.indexListTheme);
                 };
                 //轮播图
                 this.indexSwipers=this.indexData[6].config.carousel.carouselItems
@@ -227,14 +227,7 @@
                         "src":a.mainImage,
                         "tltle":item=="body_15"?a.itemName:a.name,
                         "price1":(a.lowPrice/100).toFixed(2),
-<<<<<<< HEAD
-                        "tltle":a.name,
-                        "price1":a.lowPrice/100,
                         "goodsId":item=="body_15"?a.itemId:a.id
-
-=======
->>>>>>> 7f0f25b6e76b27b1914c1ed2c025743761891832
-                        // "price2":a.highPrice
                       })
                       // this.indexSelect_cs.push(indexSelect_cs_per)
                     })
