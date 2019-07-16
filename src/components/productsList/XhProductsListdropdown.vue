@@ -6,12 +6,14 @@
           <van-dropdown-menu active-color="#c62f2e" class="aaaXhProductsList">
             <van-dropdown-item v-model="value1" :options="option1" />
           </van-dropdown-menu >
-          <van-dropdown-menu active-color="#c62f2e" class="aaaXhProductsList">
-            <van-dropdown-item v-model="value2" :options="option2" />
-          </van-dropdown-menu>
-          <van-dropdown-menu active-color="#c62f2e" class="aaaXhProductsList">
-            <van-dropdown-item v-model="value3" :options="option3" />
-          </van-dropdown-menu>
+<!--          <van-dropdown-menu active-color="#c62f2e" class="aaaXhProductsList">-->
+<!--            <van-dropdown-item v-model="value1" :options="option2" />-->
+<!--          </van-dropdown-menu >-->
+<!--          <van-dropdown-menu active-color="#c62f2e" class="aaaXhProductsList">-->
+<!--          <van-dropdown-item v-model="value1" :options="option3" />-->
+<!--        </van-dropdown-menu >-->
+          <p>销量</p>
+           <p>价格</p>
         </div>
         <van-button type="primary" @click="showPopup"  class="buttonProductsList">
           筛选
@@ -32,27 +34,15 @@
             </li>
             <li v-for="item in ListTwo">
               <h3>{{item.group}}</h3>
-              <div>
-                <p v-for="i in item.nameAndCounts">{{i.name}}</p>
+              <div class="">
+                <p v-for="i in item.nameAndCounts"  >{{i.name}}</p>
               </div>
             </li>
-<!--            <li >-->
-<!--              <h3>{{ListTwo[1].group}}</h3>-->
-<!--              <div class="timeXhProductsList">-->
-<!--                <p v-for="i in ListTwo[1].nameAndCounts">{{i.name}}</p>-->
-<!--              </div>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--              <h3>{{ListTwo[2].group}}</h3>-->
-<!--              <p v-for="i in ListTwo[2].nameAndCounts">{{i.name}}</p>-->
-<!--            </li>-->
-<!--            <li >-->
-<!--              <h3>{{ListTwo[3].group}}</h3>-->
-<!--              <div class="timeXhProductsList">-->
-<!--                <p v-for="i in ListTwo[3].nameAndCounts">{{i.name}}</p>-->
-<!--              </div>-->
-<!--            </li>-->
-          </ul>
+<!--            <div class="hello">-->
+<!--              <div @click="showAll = !showAll" class="show-more">{{word}}</div>-->
+<!--              <div v-for='item in showList'>{{item}}</div>-->
+<!--            </div>-->
+    </ul>
         </van-popup>
       </div>
     </div>
@@ -64,6 +54,10 @@
       props:["ListTwo"],
       data() {
         return {
+          toLearnList:[
+            'html','css','javascript','java','php'   //进行显示的数据
+          ],
+          showAll:false,
           value1: 0,
           value2: 0,
           value3: 0,
@@ -115,6 +109,30 @@
           this.$refs.item.toggle();
         }
       },
+      computed:{
+        showList:function(){
+          if(this.showAll == false){                    //当数据不需要完全显示的时候
+            var showList = [];　　　　　　　　　　　　　　　 //定义一个空数组
+            if(this.toLearnList.length > 3){　　　　　　　//这里我们先显示前三个
+              for(var i=0;i<3;i++){
+                showList.push(this.toLearnList[i])
+              }
+            }else{
+              showList = this.toLearnList
+            }
+            return showList;　　　　　　　　　　　　　　　　 //返回当前数组
+          }else{
+            return this.toLearnList;
+          }
+        },
+        word:function(){
+          if(this.showAll == false){　　　　　　　　　　　//对文字进行处理
+            return '展开'
+          }else{
+            return '收起'
+          }
+        }
+      }
     }
 </script>
 

@@ -144,7 +144,7 @@
                     index_obj["indexListBrach"]=array
                   }
                   this.indexListTheme.push(index_obj)
-                  console.log(this.indexListTheme);
+                  // console.log(this.indexListTheme);
                 };
                 //轮播图
                 this.indexSwipers=this.indexData[6].config.carousel.carouselItems
@@ -191,7 +191,8 @@
                         "src":a.mainImage,
                         "tltle":a.name,
                         "price1":(a.lowPrice/100*0.75).toFixed(2),
-                        "price2":(a.highPrice/100).toFixed(2)
+                        "price2":(a.highPrice/100).toFixed(2),
+                        "goodsId":a.id
                       })
                     })
                     indexSelect_cs_per.pic=pic1
@@ -226,7 +227,7 @@
                         "src":a.mainImage,
                         "tltle":item=="body_15"?a.itemName:a.name,
                         "price1":(a.lowPrice/100).toFixed(2),
-                        // "price2":a.highPrice
+                        "goodsId":item=="body_15"?a.itemId:a.id
                       })
                       // this.indexSelect_cs.push(indexSelect_cs_per)
                     })
