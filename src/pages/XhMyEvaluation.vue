@@ -3,7 +3,7 @@
 <!--      头部-->
       <xh-my-evaluation-top></xh-my-evaluation-top>
 <!--      中间评论-->
-      <my-xh-my-evaluation-inner></my-xh-my-evaluation-inner>
+      <my-xh-my-evaluation-inner :evaluation="evaluation"></my-xh-my-evaluation-inner>
 <!--      尾部-->
       <xh-product-detail-footer></xh-product-detail-footer>
     </div>
@@ -19,7 +19,10 @@
      data() {
       return {
         itemId:"",
-        evaluation:[]
+        evaluation:{
+          userName:"",
+          context:""
+        }
       };
     },
       created(){
@@ -31,7 +34,11 @@
             // 判断接口请求是否成功 0为成功
             if(data.data.status===0){
               // 成功时接收数据
-              this.evaluation=data.data.datas;
+              var comment=data.data.datas.itemComments.commentList
+              for(var i=0;i<comment.length;i++){
+                this.evaluation.userName=comment[i].parent.userName
+                this.evaluation.context=comment[i].parent.context
+              }
               console.log(this.evaluation);
             }else{
               // 失败时打印错误信息

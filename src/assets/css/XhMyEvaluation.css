@@ -30,7 +30,7 @@
 
 }
 .imgXhMyEvaluation{
-  width: 3rem;
+  width: 100%;
   height: 3rem;
   margin: auto;
   color: #999;
@@ -41,10 +41,6 @@
 .imgXhMyEvaluation p{
    margin-top: .2rem;
  }
-img{
-  width: 100%;
-  height: 100%;
-}
 .evalutionimg{
   display: flex;
   justify-content: space-around;
@@ -90,4 +86,16 @@ img{
 .noevelution{
   margin-top: .3rem;
   color: #cccccc;
+}
+.evalution-cont{
+  position: relative;
+  left:0;
+  width: 100%;
+  height: 2rem;
+}
+.evalution-cont .context{
+  position: absolute;
+  bottom:0.1rem;
+  left:0.3rem;
+  font-size:0.26rem;
 }

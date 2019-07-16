@@ -74,7 +74,7 @@
           // 标题
           this.detailData.title=this.product.fullItemDTO.item.name
           //描述
-          this.detailData.advertise=this.product.fullItemDTO.item.advertise
+          this.detailData.advertise=this.product.fullItemDTO.item.advertise;
           //领劵
           for(var i=0;i<3;i++){
             this.detailData.coupon.push(this.product.activities.coupon[i].activity.label)
