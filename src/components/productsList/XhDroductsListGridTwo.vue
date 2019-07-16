@@ -1,7 +1,11 @@
 <template>
 <!--  四页列表-->
     <div>
+<<<<<<< HEAD
       <div class="gridProductsList" style="position: absolute;z-index:0;top: 2.5rem">
+=======
+      <div class="gridProductsList" style="position: absolute;z-index:0;top: 2rem">
+>>>>>>> 99e2ccabeb017439ab8af66decc029e75ec7f076
         <div class="gridProductsListbox">
           <van-grid :border="false" :column-num="2"  :center="false" :gutter="10"  >
             <van-grid-item class="grid_box" v-for="(i,index) in allProducts" :key="index" @click="$router.push({name:'XhProductDetail',params:{goodsId:i.id}})">

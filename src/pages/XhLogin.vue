@@ -14,15 +14,16 @@
 				<div  class="Pos2" v-show="flag==2"></div>
 			</div>
 		</div>
+		
 		<div class="LoginFooter"  >
 			<div v-show="flag==1" class="LoginFooterBox">
 				<div  class="FooterBoxInput">
 					<div class="XhLoginPost">
 						<div></div>
-						<!-- <h2 >账号</h2>
-						<h2 >密码</h2> -->
-						<input  v-model="userId" @blur="idCheck()"  type="text" placeholder="账号">
-						<input  v-model="userPass"  @blur="passCheck()" type="password" placeholder="密码">
+						<h2 id="ID" :class="{active:(IdType==1)}" @click="ChangeId()">账号</h2>
+						<h2 id="PASS" :class="{active:(PassType==1)}" @click="ChangePass()">密码</h2>
+						<input ref="ID" v-model="userId" @blur="idCheck()"  type="text" placeholder="">
+						<input ref="PASS" v-model="userPass"  @blur="passCheck()" type="password" placeholder="">
 						<p class="FooterBoxPost" >
 							<router-link tag="span" to="/XhRegisterProtocol">注册</router-link>
 							<router-link tag="span" to="/XhLoginForget">忘记密码</router-link>
@@ -56,14 +57,17 @@
 					<div class="XhLoginPost">
 						<div></div>
 						<div></div>
-						<input @blur="phoneCheck()" v-model="userPhone" type="text" placeholder="请输入手机号">
-								<input v-model="checkCoad"  type="text" placeholder="图片验证码">
-								<img @click="PicCheck()" :src="base64Str" class="picCode" >
-								<input v-model="noteCoad" type="text" placeholder="短信验证码">
-								<button :disabled="disabled" @click="NoteCoad()" class="MessageCoad">发送验证码</button>
-								<h1 v-if="show" class="TimeCoad">{{Time}}后重新发送</h1>
-								<input @click="LoginPhonePost()" type="button" class="FooterBoxSign" value="登录">
-							</div>
+						<h2 id="ID" :class="{active:(IdType==1)}" @click="ChangeId()">手机号</h2>
+						<h2 id="PASS" :class="{active:(PassType==1)}" @click="ChangePass()">图片验证码</h2>
+						<h2 id="COAD" :class="{active:(codeType==1)}" @click="ChangeCode()">短信验证码</h2>
+						<input ref="Phone" @blur="phoneCheck()" v-model="userPhone" type="text" placeholder="">
+						<input ref="Pic" @blur="piccheck()" v-model="checkCoad"  type="text" placeholder="">
+						<img @click="PicCheck()" :src="base64Str" class="picCode" >
+						<input ref="Coad" @blur="notecoad()" v-model="noteCoad" type="text" placeholder="">
+						<button :disabled="disabled" @click="NoteCoad()" class="MessageCoad">发送验证码</button>
+						<h1 v-if="show" class="TimeCoad">{{Time}}后重新发送</h1>
+						<input @click="LoginPhonePost()" type="button" class="FooterBoxSign" value="登录">
+					</div>
 						</div>
 						<div class="FooterBoxTreaty">
 							<van-checkbox v-model="checked" checked-color="#e61818"></van-checkbox>
@@ -108,6 +112,9 @@
 				show:'',
 				Time:'',
 				noteCoad:'',
+				IdType:'',
+				PassType:'',
+				codeType:''
 			}
 		},
 		created() {
@@ -124,11 +131,30 @@
 				this.$refs.QuestLogin.style.fontSize=".48rem";
 			},
 			// 效果字体
-			
+			ChangeId(){
+				this.IdType=1
+				this.$refs.ID.focus()
+				this.$refs.Phone.focus()
+				
+			},
+			ChangePass(){
+				this.PassType=1
+				this.$refs.PASS.focus()
+				this.$refs.Pic.focus()
+			},
+			ChangeCode(){
+				this.codeType=1
+				this.$refs.Coad.focus()
+			},
 			
 			
 			idCheck(){
 				    var regid=/^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\d{8}$/;
+					if(this.userId!=""){
+						this.IdType=1
+					}else if(this.userId==""){
+						this.IdType=2
+					}
 				    if(regid.test(this.userId)==true){
 				        this.id=1;
 				    }else{
@@ -139,16 +165,26 @@
 				// 密码验证
 			passCheck(){
 					var regPass=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/;
-					if(regPass.test(this.userPass)==true){
+					// if(regPass.test(this.userPass)==true){
+						if(this.userPass!=""){
+							this.PassType=1
+						}else if(this.userPass==""){
+							this.PassType=2
+						}
 						this.pass=1;
-					}else{
-						this.$toast("密码格式错误！")
-					}
+					// }else{
+					// 	this.$toast("密码格式错误！")
+					// }
 				},
 				
 				// 手机验证
 			phoneCheck(){
 					var regPhone=/^^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\d{8}$$/;
+					if(this.userPhone!=""){
+						this.IdType=1
+					}else if(this.userPhone==""){
+						this.IdType=2
+					}
 					if(regPhone.test(this.userPhone)==true){
 						this.phone=1;
 					}else{
@@ -156,7 +192,13 @@
 					}
 				},
 				
-				
+			piccheck(){
+				if(this.checkCoad!=""){
+					this.PassType=1
+				}else if(this.checkCoad==""){
+					this.PassType=2
+				}
+			},	
 				// 图片验证码
 			PicCheck(){
 					this.$axios.get("/api/xinhua/verification/code").then((res)=>{
@@ -171,14 +213,18 @@
 						})
 					},
 					
-					
+			notecoad(){
+				if(this.noteCoad!=""){
+					this.codeType=1
+				}else if(this.noteCoad==""){
+					this.codeType=2
+				}
+			},				
 				// 短信验证
 			NoteCoad(){
 				if(this.phone==1){
-					this.$axios.post("",{
-						code:this.checkCoad,
-						mobile:this.userPhone
-					}).then((res)=>{
+          var url1='/api/xinhua/verification/login?code='+this.checkCoad+"&&mobile="+this.userPhone;
+					this.$axios.post(url1).then((res)=>{
 						console.log(res)
 						if(res.status==200){
 							if(res.data.status==0){
@@ -208,10 +254,8 @@
 					// let $this= this;
 					console.log(this.userId)
 				if(this.id==1&&this.pass==1){
-					this.$axios.post("/api/xinhua/login/account",{
-						mobile:this.userId,
-						pass:this.userPass
-					}).then((res)=>{
+				  var url2='/api/xinhua/login/account?mobile='+this.userId+"&&pass="+this.userPass
+					this.$axios.post(url2).then((res)=>{
 						if(res.status == 200){
 							if(res.data.status == 0){
 								console.log(this.userId)
@@ -235,10 +279,8 @@
 				//快捷登陆
 			LoginPhonePost(){
 					if(this.phone==1&&this.checked==true){
-						this.$axios.post("/api/xinhua/login/mobile",{
-							mobile:this.userPhone,
-							code:this.noteCoad
-						}).then((res)=>{
+            var url3='/api/xinhua/login/mobile?code='+this.noteCoad+"&&mobile="+this.userPhone;
+						this.$axios.post(url3).then((res)=>{
 							if(res.status==200){
 								if(res.data.status==0){
 									this.$toast(res.data.err)
@@ -254,17 +296,14 @@
 						this.$toast('此次手机登录信息有误');
 					}
 			}
-			
-			
 		}
 		}
 </script>
 
 <style scoped>
 	.active{
-		font-size:.2rem !important;
+		font-size:.3rem !important;
 		line-height:.2rem !important;
-		transition:all 1s !important;
 	}
 	.Login{
 		width: 100%;
@@ -375,15 +414,18 @@
 		font-size:.35rem;
 		position: absolute;
 		left: .3rem;
-		top: 1.1rem;
+		transition: all .5s;
+		font-weight: normal;
 	}
-	.LoginFooter .LoginFooterBox .FooterBoxInput .XhLoginPost h2:nth-child(1){
-		top: 1.1rem;
+	.LoginFooter .LoginFooterBox .FooterBoxInput .XhLoginPost #ID{
+		top: 0rem ;
 	}
-	.LoginFooter .LoginFooterBox .FooterBoxInput .XhLoginPost h2:nth-child(2){
-		top: 0rem;
+	.LoginFooter .LoginFooterBox .FooterBoxInput .XhLoginPost #PASS{
+		top: 1.1rem ;
 	}
-	
+	.LoginFooter .LoginFooterBox .FooterBoxInput .XhLoginPost #COAD{
+		top: 2.2rem ;
+	}
 	
 	.LoginFooter .LoginFooterBox .FooterBoxInput .XhLoginPost input{
 		display: block;
@@ -422,19 +464,22 @@
 		width: 2rem;
 		height: .9rem;
 		position: absolute;
-		top: 1.2rem; 
+		top: 1.1rem; 
 		right: .2rem;
+		border-radius: .1rem;
 	}
 	.LoginFooter .LoginFooterBox .FooterBoxInput .XhLoginPost .MessageCoad{
-		height: .7rem;
-		width: 2rem;
-		position: absolute;
-		top: 2.4rem;
-		right: .1rem;
-		background: red;
-		color: #FFFFFF;
-		font-size: .2rem;
-		line-height: .7rem;
+	    height: .7rem;
+        width: 2rem;
+        position: absolute;
+        top: 2.4rem;
+        right: .1rem;
+        background: red;
+        color: #FFFFFF;
+        font-size: .2rem;
+        line-height: .7rem;
+        border-radius: .1rem;
+        border: 0;
 	}
 	.LoginFooter .LoginFooterBox .FooterBoxTreaty{
 		width: 100%;
@@ -444,7 +489,7 @@
 	}
 	.LoginFooter .LoginFooterBox .FooterBoxTreaty span{
 		line-height: .8rem;
-		 font-size: 0.4rem;
+		 font-size: 0.3rem;
 		 margin-left: .2rem;
 	}
 	

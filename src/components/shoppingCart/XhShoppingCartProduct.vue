@@ -1,7 +1,7 @@
 <template>
     <div class="XhShoppingCartProduct">
       <div class="XhShoppingCartShopName">
-        <van-checkbox v-model="product.checked" checked-color="#c72f2e" class="XhShoppingCartShopChecked" @click="allChecked"></van-checkbox>
+        <van-checkbox v-model="product.checked" checked-color="#c72f2e" class="XhShoppingCartShopChecked" @click="allChecke"></van-checkbox>
         <van-icon name="shop-o" class="XhShoppingCartShopIcon"/>
         <h4 class="XhShoppingCartShopTitle">新华书店网上商城自营图书</h4>
         <van-button type="primary" @click="showPopup" class="XhShoppingCartDiscountsBox">
@@ -9,11 +9,11 @@
         </van-button>
       </div>
       <div class="XhShoppingCartProductInfo" v-for="(item,index) in product.data">
-        <van-checkbox v-model="item.checked" checked-color="#c72f2e" class="XhShoppingCartShopChecked"></van-checkbox>
+        <van-checkbox v-model="item.checked" checked-color="#c72f2e" class="XhShoppingCartShopChecked" @click="onecheck"></van-checkbox>
         <div class="Product">
           <img :src="item.img" alt="" class="ProductImg">
           <h5 class="ProductH5">{{item.name}}</h5>
-          <p class="ProductPrice">{{item.price}}</p>
+          <p class="ProductPrice"><span>￥</span>{{item.price}}</p>
           <div class="AddReduce">
             <span class="numberReduce" @click="reduce(index)">-</span>
             <span class="ProductNumber">{{item.value}}</span>
@@ -92,8 +92,11 @@
           add(index){
             this.$emit("addf",index);
           },
-          allChecked(){
-            this.$emit("allChecked",index);
+          allChecke(){
+            this.$emit("allChecked");
+          },
+          onecheck(){
+            this.$emit("onechecked")
           }
 
         }

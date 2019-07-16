@@ -2,11 +2,11 @@
   <div class="XhShoppingCart pageBody">
     <XhShoppingCartHeader :header="header" @manages="changeManage"></XhShoppingCartHeader>
     <main class="cart-mian">
-      <XhShoppingCartProduct :product="product" @addf="addValue" @reducef="reduceValue" @allChecked="allchecked"></XhShoppingCartProduct>
+      <XhShoppingCartProduct :product="product" @addf="addValue" @reducef="reduceValue" @allChecked="allchecke" @onechecked="oneChecked"></XhShoppingCartProduct>
       <XhShoppingCartIntroduce></XhShoppingCartIntroduce>
     </main>
-    <XhShoppingCartSubmit v-if="manage==1"></XhShoppingCartSubmit>
-    <XhShoppingCartDelete v-if="manage==0"></XhShoppingCartDelete>
+    <XhShoppingCartSubmit v-if="manage==1" :product="product" @allChecked="allchecke" :allNumber="allNumber" :allPrice="allPrice"></XhShoppingCartSubmit>
+    <XhShoppingCartDelete v-if="manage==0" :product="product" @allChecked="allchecke" @allDelete="allDeleteData"></XhShoppingCartDelete>
     <!--底部-->
     <xh-footer></xh-footer>
   </div>
@@ -32,7 +32,7 @@
                 {
                   id:1,
                   name:"第四只手",
-                  price:"￥39.20",
+                  price:"39.20",
                   img:"https://img2.xinhuashudian.com/bookbasepic/C/02448/3858400-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200",
                   value:1,
                   checked:true,
@@ -40,7 +40,7 @@
                 {
                   id:1,
                   name:"第四只手",
-                  price:"￥39.20",
+                  price:"39.20",
                   img:"https://img2.xinhuashudian.com/bookbasepic/C/02448/3858400-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200",
                   value:1,
                   checked:true,
@@ -48,7 +48,7 @@
                 {
                   id:1,
                   name:"第四只手",
-                  price:"￥39.20",
+                  price:"39.20",
                   img:"https://img2.xinhuashudian.com/bookbasepic/C/02448/3858400-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200",
                   value:1,
                   checked:true,
@@ -56,6 +56,28 @@
               ]
             }
           }
+        },
+        computed:{
+          allNumber:function () {
+            var num=0;
+            this.product.data.forEach(item=>{
+              if(item.checked===true){
+                  num=num+item.value
+                }
+              }
+            );
+            return num;
+          },
+          allPrice:function () {
+            var total=0;
+            this.product.data.forEach(item=>{
+                if(item.checked===true){
+                  total=total+item.value*item.price;
+                }
+              }
+            );
+            return total.toFixed(2);
+          },
         },
         components:{
           XhShoppingCartHeader,
@@ -65,9 +87,6 @@
           XhShoppingCartDelete,
           XhFooter
         },
-        // created(){
-        //   this.Logindata();
-        // },
         // mounted(){
         //   this.loadingShoppingCartData()
         // },
@@ -77,13 +96,7 @@
               console.log(data);
             })
           },
-          Logindata(){
-            api.post('/api/xinhua/login/account?mobile=18829042286&&pass=123456').then(data=>{
-              console.log(data);
-            })
-          },
           changeManage(){
-            console.log(1);
             if(this.manage==1){
               this.manage=0;
               this.header="取消"
@@ -97,14 +110,38 @@
           },
           reduceValue(index){
             this.product.data[index].value--;
-            if(this.product.data[index].value==1){
+            if(this.product.data[index].value<1){
+              console.log(1);
               this.product.data[index].value=1
             }
           },
-          allchecked(){
+          allchecke(){
             this.product.data.forEach(item=>{
-              item.checked=this.product.checked
+              item.checked=(!this.product.checked)
             })
+          },
+          oneChecked(){
+            setTimeout(()=>{
+              var count=0;
+              this.product.data.forEach(item=>{
+                if(item.checked===true){
+                  count++
+                }
+              });
+              if(count===this.product.data.length){
+                this.product.checked=true
+              }else{
+                this.product.checked=false
+              }
+            },100)
+
+          },
+          allDeleteData(){
+            this.product.data.forEach((item,index)=>{
+              if(item.checked===true){
+                this.product.data.splice(index,1)
+              }
+            });
           }
 
         }

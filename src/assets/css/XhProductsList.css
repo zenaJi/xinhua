@@ -461,7 +461,11 @@ color: rgb(153, 153, 153);
   transition: all 0.3s;
   position: fixed;
   background-color: white;
+<<<<<<< HEAD
   z-index:15;
+=======
+  z-index:1;
+>>>>>>> 99e2ccabeb017439ab8af66decc029e75ec7f076
   font-size: 14px;
   top:-0.2rem;
 
@@ -470,9 +474,15 @@ color: rgb(153, 153, 153);
   transition: all 0.3s;
   position: fixed;
   background-color: white;
+<<<<<<< HEAD
   z-index:15;
   font-size: 14px;
   top:1.7rem;
+=======
+  z-index:1;
+  font-size: 14px;
+  top:1.8rem;
+>>>>>>> 99e2ccabeb017439ab8af66decc029e75ec7f076
 }
 
 .XhProductsListdropdown-zonghe-cs>div{
