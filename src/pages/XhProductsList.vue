@@ -3,13 +3,13 @@
 <!--      首部-->
     <XhProductsList-top @showCountaa="showCount"></XhProductsList-top>
 <!--      综合-->
-    <XhProductsList-dropdown :ListTwo="ListTwo" v-if="ListTwo.length"></XhProductsList-dropdown>
+    <XhProductsList-dropdown :ListTwo="ListTwo" v-if="ListTwo.length" @xinPinApi="xinPinApi"></XhProductsList-dropdown>
 <!--    仅看有货-->
-    <XhProductsList-only :ListTwo="ListTwo" v-if="ListTwo.length"></XhProductsList-only>
+<!--    <XhProductsList-only :ListTwo="ListTwo" v-if="ListTwo.length"></XhProductsList-only>-->
 <!--    详情列表-->
     <gridproductsList-one v-show="!showing" :allProducts="allProducts" ></gridproductsList-one>
     <XhDroductsList-Grid-Two   v-show="showing" :allProducts="allProducts"></XhDroductsList-Grid-Two>
-    <van-loading size="24px">加载中...</van-loading>
+<!--    <van-loading size="24px">加载中...</van-loading>-->
 
   </div>
 
@@ -83,6 +83,28 @@
                   this.req=true
                   // console.log(this.allListData.pageNo,this.list_height,this.req);
                 })
+              } else {
+                // 失败时打印错误信息
+                console.log(data.data.err);
+              }
+            }
+          }).catch(err => {
+            // 请求错误返回错误信息
+            console.log(err);
+          });
+        },
+        xinPinApi(sort){
+          this.allListData.sort=sort;
+          // console.log(this.allListData.sort);
+          api.get('/api/xinhua/search/list',this.allListData).then(data => {
+            // 判断http请求状态码,200为请求成功
+            if (data.status === 200) {
+              // 判断接口请求是否成功 0为成功
+              if (data.data.status === 0) {
+                // 成功时接收数据
+                // console.log(data.data.datas.entities.data);
+                this.allProducts=data.data.datas.entities.data
+
               } else {
                 // 失败时打印错误信息
                 console.log(data.data.err);

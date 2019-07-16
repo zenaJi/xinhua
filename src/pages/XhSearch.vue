@@ -36,8 +36,10 @@
     created(){
       this.SearchBefore();
     },
-    updated(){
-      this.SearchPending()
+    watch:{
+      title(){
+        this.SearchPending()
+      }
     },
     methods:{
       Clear(){

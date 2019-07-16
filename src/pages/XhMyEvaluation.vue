@@ -1,11 +1,11 @@
 <template>
-    <div class="XhMyEvaluation">
+    <div class="XhMyEvaluation pageBody">
 <!--      头部-->
-      <XhMyEvaluation-top></XhMyEvaluation-top>
+      <xh-my-evaluation-top></xh-my-evaluation-top>
 <!--      中间评论-->
-      <my-XhMyEvaluation-inner></my-XhMyEvaluation-inner>
+      <my-xh-my-evaluation-inner></my-xh-my-evaluation-inner>
 <!--      尾部-->
-      <XhProductDetail-footer></XhProductDetail-footer>
+      <xh-product-detail-footer></xh-product-detail-footer>
     </div>
 </template>
 
@@ -14,17 +14,38 @@
   import XhMyEvaluationtop from '../components/MyEvaluation/XhMyEvaluationtop'
   import myXhMyEvaluationinner from '../components/MyEvaluation/myXhMyEvaluationinner'
     export default {
-        name: "XhMyEvaluation",
+      name: "XhMyEvaluation",
      data() {
       return {
-        // active: 0
+        itemId:"",
+        evaluation:[]
       };
     },
+      created(){
+        this.itemId=this.$route.params.itemId;
+         console.log(this.itemId);
+        api.get("/api/xinhua/product/other/data/"+this.itemId).then(data=>{
+          // 判断http请求状态码,200为请求成功
+          if(data.status===200){
+            // 判断接口请求是否成功 0为成功
+            if(data.data.status===0){
+              // 成功时接收数据
+              this.evaluation=data.data.datas;
+              console.log(this.evaluation);
+            }else{
+              // 失败时打印错误信息
+              console.log(data.data.err)
+            }
+          }
+        }).catch(err=>{
+          // 请求错误返回错误信息
+          console.log(err)
+        })
+      },
       components:{
-        'XhMyEvaluation-top':XhMyEvaluationtop,
-        'my-XhMyEvaluation-inner':myXhMyEvaluationinner,
-
-        'XhProductDetail-footer':XhProductDetailfooter
+        'xh-my-evaluation-top':XhMyEvaluationtop,
+        'my-xh-my-evaluation-inner':myXhMyEvaluationinner,
+        'xh-product-detail-footer':XhProductDetailfooter
       }
     }
 </script>

@@ -139,11 +139,11 @@
 				// 密码验证
 			passCheck(){
 					var regPass=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/;
-					if(regPass.test(this.userPass)==true){
+					// if(regPass.test(this.userPass)==true){
 						this.pass=1;
-					}else{
-						this.$toast("密码格式错误！")
-					}
+					// }else{
+					// 	this.$toast("密码格式错误！")
+					// }
 				},
 				
 				// 手机验证
@@ -175,10 +175,8 @@
 				// 短信验证
 			NoteCoad(){
 				if(this.phone==1){
-					this.$axios.post("",{
-						code:this.checkCoad,
-						mobile:this.userPhone
-					}).then((res)=>{
+          var url1='/api/xinhua/verification/login?code='+this.checkCoad+"&&mobile="+this.userPhone;
+					this.$axios.post(url1).then((res)=>{
 						console.log(res)
 						if(res.status==200){
 							if(res.data.status==0){
@@ -208,10 +206,8 @@
 					// let $this= this;
 					console.log(this.userId)
 				if(this.id==1&&this.pass==1){
-					this.$axios.post("/api/xinhua/login/account",{
-						mobile:this.userId,
-						pass:this.userPass
-					}).then((res)=>{
+				  var url2='/api/xinhua/login/account?mobile='+this.userId+"&&pass="+this.userPass
+					this.$axios.post(url2).then((res)=>{
 						if(res.status == 200){
 							if(res.data.status == 0){
 								console.log(this.userId)
@@ -235,10 +231,8 @@
 				//快捷登陆
 			LoginPhonePost(){
 					if(this.phone==1&&this.checked==true){
-						this.$axios.post("/api/xinhua/login/mobile",{
-							mobile:this.userPhone,
-							code:this.noteCoad
-						}).then((res)=>{
+            var url3='/api/xinhua/login/mobile?code='+this.noteCoad+"&&mobile="+this.userPhone;
+						this.$axios.post(url3).then((res)=>{
 							if(res.status==200){
 								if(res.data.status==0){
 									this.$toast(res.data.err)
@@ -254,8 +248,6 @@
 						this.$toast('此次手机登录信息有误');
 					}
 			}
-			
-			
 		}
 		}
 </script>

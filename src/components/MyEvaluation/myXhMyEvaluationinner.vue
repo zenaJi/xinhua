@@ -27,7 +27,12 @@
 
 <script>
     export default {
-        name: "myXhMyEvaluationinner"
+        name: "myXhMyEvaluationinner",
+      data(){
+          return{
+            active:""
+        }
+      }
     }
 </script>
 

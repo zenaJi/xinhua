@@ -265,7 +265,7 @@ export default new Router({
       component: XhMorePage
     },
     {
-      path: '/XhMyEvaluation',
+      path: '/XhMyEvaluation/:itemId',
       name: 'XhMyEvaluation',
       component: XhMyEvaluation
     },
