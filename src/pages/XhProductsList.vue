@@ -11,7 +11,6 @@
     <XhDroductsList-Grid-Two   v-show="showing" :allProducts="allProducts" v-if="allProducts.length"></XhDroductsList-Grid-Two>
 <!--    <h2 v-if="!allProducts.length" style="position: fixed;top: 3rem;left: 2rem">亲没有数据,请重新筛选</h2>-->
     <van-loading v-if="!allProducts.length" size="54px" color="#1989fa" style="position: fixed;top:50%;left:50%;margin-left: -0.88rem">加载中...</van-loading>
-
   </div>
 
 </template>
