@@ -3,7 +3,7 @@
         <van-checkbox v-model="product.checked" class="AllChecked" checked-color="#c72f2e" @click="allChecke">全选</van-checkbox>
         <span class="AllPrice">合计：</span>
         <span class="PriceNumber"><span>￥</span>{{allPrice}}</span>
-        <button class="SubmitPrice">{{"去结算("+allNumber+")"}}</button>
+        <button class="SubmitPrice" @click="submitall">{{"去结算("+allNumber+")"}}</button>
       </div>
 </template>
 
@@ -14,6 +14,9 @@
         methods:{
           allChecke(){
             this.$emit("allChecked");
+          },
+          submitall(){
+            this.$emit("allsubmit");
           }
         }
     }
