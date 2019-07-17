@@ -47,6 +47,7 @@ import XhMyEvaluation from '../pages/XhMyEvaluation'
 import XhHistory from '../pages/XhHistory'
 import XhMember from '../pages/XhMember'
 import XhRule from '../pages/XhRule'
+import XhEditAddress from '../pages/XhEditAddress'
 import XhCustomerservice from '../pages/XhCustomerservice'
 
 Vue.use(Router)
@@ -206,9 +207,14 @@ const router=new Router({
       component: XhDestoryCount
     },
     {
-      path: "/XhAddressManagement",
+      path: "/XhAddressManagement",///:information
       name: 'XhAddressManagement',
       component: XhAddressManagement
+    },
+    {
+      path: "/XhEditAddress",///
+      name: 'XhEditAddress',
+      component: XhEditAddress
     },
     {
       path: "/XhCreateAddress",

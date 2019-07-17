@@ -206,7 +206,7 @@
   .XhProductsListonly-cs{
     position: fixed;
     z-index: 6;
-    top: 1.9rem;
+    top: 1.87rem;
     display: flex;
     justify-content: space-around;
     width: 100vw;
