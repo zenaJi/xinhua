@@ -73,8 +73,13 @@
       <!-- XHnav -->
       <div class="XHnav">
         <router-link to="/XhDiscounts">
+<<<<<<< HEAD
           <h6>2</h6>
           <h5>优惠劵</h5>
+=======
+          <h6>0</h6>
+          <h5>优惠卷</h5>
+>>>>>>> ac57fbec60c2e8d9de832906b22908b14b0204ee
         </router-link>
         <img src="../../static/images/mine/xhimg/s.png" />
         <router-link to="/XhGiftCards">
@@ -122,8 +127,7 @@
         </div>
       </router-link>
 
-    </div>
-
+   </div>
     <!--底部-->
     <xh-footer></xh-footer>
 

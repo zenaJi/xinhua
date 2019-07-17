@@ -5,7 +5,7 @@
       <XhShoppingCartProduct :product="product" @addf="addValue" @reducef="reduceValue" @allChecked="allchecke" @onechecked="oneChecked"></XhShoppingCartProduct>
       <XhShoppingCartIntroduce></XhShoppingCartIntroduce>
     </main>
-    <XhShoppingCartSubmit v-if="manage==1" :product="product" @allChecked="allchecke" :allNumber="allNumber" :allPrice="allPrice"></XhShoppingCartSubmit>
+    <XhShoppingCartSubmit v-if="manage==1" :product="product" @allChecked="allchecke" @allsubmit="allSubmit" :allNumber="allNumber" :allPrice="allPrice"></XhShoppingCartSubmit>
     <XhShoppingCartDelete v-if="manage==0" :product="product" @allChecked="allchecke" @allDelete="allDeleteData"></XhShoppingCartDelete>
     <!--底部-->
     <xh-footer></xh-footer>
@@ -28,41 +28,17 @@
             manage:1,
             product:{
               checked:true,
-              data:[
-                {
-                  id:1,
-                  name:"第四只手",
-                  price:"39.20",
-                  img:"https://img2.xinhuashudian.com/bookbasepic/C/02448/3858400-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200",
-                  value:1,
-                  checked:true,
-                },
-                {
-                  id:1,
-                  name:"第四只手",
-                  price:"39.20",
-                  img:"https://img2.xinhuashudian.com/bookbasepic/C/02448/3858400-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200",
-                  value:1,
-                  checked:true,
-                },
-                {
-                  id:1,
-                  name:"第四只手",
-                  price:"39.20",
-                  img:"https://img2.xinhuashudian.com/bookbasepic/C/02448/3858400-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200",
-                  value:1,
-                  checked:true,
-                }
-              ]
+              data:[]
             }
           }
         },
+
         computed:{
           allNumber:function () {
             var num=0;
             this.product.data.forEach(item=>{
               if(item.checked===true){
-                  num=num+item.value
+                  num=num+item.num
                 }
               }
             );
@@ -72,7 +48,7 @@
             var total=0;
             this.product.data.forEach(item=>{
                 if(item.checked===true){
-                  total=total+item.value*item.price;
+                  total=total+item.num*JSON.parse(item.extension).price;
                 }
               }
             );
@@ -87,14 +63,19 @@
           XhShoppingCartDelete,
           XhFooter
         },
-        // mounted(){
-        //   this.loadingShoppingCartData()
-        // },
+        created(){
+          this.loadingShoppingCartData()
+        },
         methods:{
           loadingShoppingCartData(){
             api.get('/api/xinhua/shopcar/get').then(data=>{
-              console.log(data);
-            })
+              data.data.datas.forEach(item=>{
+                item.checked=true
+              });
+              this.product.data=data.data.datas
+
+            });
+            setTimeout(()=>{console.log(this.product.data);},100)
           },
           changeManage(){
             if(this.manage==1){
@@ -106,14 +87,21 @@
             }
           },
           addValue(index){
-            this.product.data[index].value++
+            this.product.data[index].num++;
+            api.put("/api/xinhua/shopcar/update",{
+              goodsId:Number.parseInt(this.product.data[index].goodsId),
+              num:this.product.data[index].num,
+            })
           },
           reduceValue(index){
-            this.product.data[index].value--;
-            if(this.product.data[index].value<1){
-              console.log(1);
-              this.product.data[index].value=1
+            this.product.data[index].num--;
+            if(this.product.data[index].num<1){
+              this.product.data[index].num=1
             }
+            api.put("/api/xinhua/shopcar/update",{
+              goodsId:parseInt(this.product.data[index].goodsId),
+              num:this.product.data[index].num,
+            })
           },
           allchecke(){
             this.product.data.forEach(item=>{
@@ -139,11 +127,31 @@
           allDeleteData(){
             this.product.data.forEach((item,index)=>{
               if(item.checked===true){
-                this.product.data.splice(index,1)
+                api.del("/api/xinhua/shopcar/delete",{
+                  goodsId:parseInt(this.product.data[index].goodsId)
+                });
+                this.product.data.splice(index,1);
               }
             });
+          },
+          allSubmit(){
+            var buy=[];
+            this.product.data.forEach((item)=>{
+              if(item.checked===true){
+                buy.push(item);
+              }
+            });
+            let product=JSON.stringify(buy)
+            console.log(product);
+            this.$router.push({
+              path: '/XhFirmOrder',
+              query: {
+                product:product,
+                allNumber:this.allNumber,
+                allPrice:this.allPrice,
+              }
+            })
           }
-
         }
 
 
