@@ -1,6 +1,6 @@
 <template>
 <!--  两页列表-->
-    <div>
+    <div style="position: absolute;top: 2.56rem">
           <div>
             <div class="gridproductsListsmall" v-for="(i,index) in allProducts" :key="index" @click="$router.push({name:'XhProductDetail',params:{goodsId:i.id}})">
             <div class="pri_boxsonlyProductsList">

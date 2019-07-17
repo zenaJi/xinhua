@@ -5,7 +5,7 @@
       <div class="XhProductDetail"></div>
       <!--      优惠券~用户~出版-->
       <ul class="CouponProductDetail">
-        <li>领劵
+        <li v-if="detailData.coupon" >领劵
           <div class="CouponProductDetailspan">
             <span v-for="(item,index) in detailData.coupon" :key="index">{{item}}</span>
           </div>
@@ -35,7 +35,7 @@
           </li>
         <li>
           <router-link :to="path+'/'+itemId">
-            用户评论（0）
+            用户评论
             <span class="cProductDetail" >></span>
           </router-link>
         </li>

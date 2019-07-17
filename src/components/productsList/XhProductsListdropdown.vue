@@ -1,7 +1,7 @@
 <template>
 <!--  综合-->
     <div style="position: relative">
-      <div class="dropdownProductsList" style="position:fixed;z-index:3;width: 100vw">
+      <div class="dropdownProductsList" style="position:fixed;z-index:16;width: 100vw">
         <div class="dropdown-menu">
             <p @click="zongHe()" :class="{cs_red:zonghe_change}">{{zonghe}}{{zonghe_change_up?'∨':'∧'}}</p>
             <div style="display: flex;position: relative;" @click="sale">

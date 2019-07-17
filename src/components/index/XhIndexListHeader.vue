@@ -1,7 +1,7 @@
 <template>
     <div class="index-list-title flex">
       <h3 v-show="title.tlt">{{title.tlt}}</h3>
-      <router-link v-show="title.moreLink" class="more-page" to="/XhMorePage">
+      <router-link v-show="title.moreLink" class="more-page" to="/">
         <span v-show="title.moreLink">更多 >></span>
       </router-link>
     </div>

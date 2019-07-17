@@ -6,7 +6,7 @@
           <van-icon name="arrow-left" class="topiconXhProductDetailtop"/>
         </router-link>
         <div>
-          <input type="text" name="" id="">
+          <input type="text" name="" id="" @click="$router.push('/XhSearch')">
           <van-icon name="search" class="fangdajingXhProductDetailtop" />
         </div>
         <div @click="showCount">

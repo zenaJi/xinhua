@@ -3,14 +3,14 @@
 <!--      首部-->
     <XhProductsList-top @showCountaa="showCount"></XhProductsList-top>
 <!--      综合-->
-    <XhProductsList-dropdown :ListTwo="ListTwo" v-if="ListTwo.length" @xinPinApi="xinPinApi"></XhProductsList-dropdown>
+    <XhProductsList-dropdown :ListTwo="ListTwo" v-if="ListTwo" @xinPinApi="xinPinApi"></XhProductsList-dropdown>
 <!--    仅看有货-->
-<!--    <XhProductsList-only :ListTwo="ListTwo" v-if="ListTwo.length"></XhProductsList-only>-->
+    <XhProductsList-only @twoApi="twoApi" :ListTwo="ListTwo" v-if="ListTwo"></XhProductsList-only>
 <!--    详情列表-->
-    <gridproductsList-one v-show="!showing" :allProducts="allProducts" ></gridproductsList-one>
-    <XhDroductsList-Grid-Two   v-show="showing" :allProducts="allProducts"></XhDroductsList-Grid-Two>
-<!--    <van-loading size="24px">加载中...</van-loading>-->
-
+    <gridproductsList-one v-show="!showing" :allProducts="allProducts" v-if="allProducts.length"></gridproductsList-one>
+    <XhDroductsList-Grid-Two   v-show="showing" :allProducts="allProducts" v-if="allProducts.length"></XhDroductsList-Grid-Two>
+<!--    <h2 v-if="!allProducts.length" style="position: fixed;top: 3rem;left: 2rem">亲没有数据,请重新筛选</h2>-->
+    <van-loading v-if="!allProducts.length" size="54px" color="#1989fa" style="position: fixed;top:50%;left:50%;margin-left: -0.88rem">加载中...</van-loading>
   </div>
 
 </template>
@@ -49,7 +49,7 @@
             itemCode:"",//
             inStock:0//是否有货：1为查有货商品,0为全部
           },
-          ListTwo:[],
+          ListTwo:0,
           allProducts:[]
         }
       },
@@ -74,7 +74,7 @@
               // 判断接口请求是否成功 0为成功
               if (data.data.status === 0) {
                 // 成功时接收数据
-                // console.log(data.data.datas.entities.data);
+                // console.log(data.data.datas.attributes);
                 this.ListTwo=data.data.datas.attributes
                 //获取商品列表
                 this.allProducts =this.allProducts.concat(data.data.datas.entities.data)
@@ -114,6 +114,30 @@
             // 请求错误返回错误信息
             console.log(err);
           });
+        },
+        //多参数attributes请求
+        twoApi(arr){
+          this.allListData.attributes=arr.attributes
+          this.allListData.inStock=arr.inStock
+          api.get('/api/xinhua/search/list',this.allListData).then(data => {
+            // 判断http请求状态码,200为请求成功
+            if (data.status === 200) {
+              // 判断接口请求是否成功 0为成功
+              if (data.data.status === 0) {
+                // 成功时接收数据
+                console.log(data.data.datas.entities.data);
+                this.allProducts=data.data.datas.entities.data
+
+              } else {
+                // 失败时打印错误信息
+                console.log(data.data.err);
+              }
+            }
+          }).catch(err => {
+            // 请求错误返回错误信息
+            console.log(err);
+          });
+
         },
         searchlist(){
           this.listSearch=listSearch
