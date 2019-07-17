@@ -9,20 +9,34 @@
         	</span>
         </div>
       </div>
+			
       <van-tabs v-model="active" class="collect-cs" type="card">
         <van-tab title="商品收藏" class="collect-product">
-          <img src="../../static/cs/收藏.png">
+										<div class="XhCollection-Bigbox">
+											<div class="XhCollection-Bigbox-one-two">
+													  <img src="../../static/images/mine/xhimg/4471015-fm.jpg" />
+													  <div class="XhCollection-Bigbox-one-two-span"><span>破冰行动</span></div>
+													  <div class="XhCollection-Bigbox-one-two-span">
+														  <span class="XhCollection-Bigbox-one-two-span-span1">￥68.40</span>
+											              
+													  </div>
+										</div>
+										</div>
+          <!-- <img src="../../static/cs/收藏.png">
           <span>去添加点什么吧</span>
-          <button>随便逛逛</button>
+          <router-link to="/" > <button>随便逛逛</button></router-link> -->
         </van-tab>
+				
         <van-tab title="图书管理" class="collect-product">
           <img src="../../static/cs/收藏.png">
           <span>暂无图书馆收藏</span>
-          <button>随便逛逛</button></van-tab>
+        <router-link to="/"> <button>随便逛逛</button></router-link>
+					</van-tab>
         <van-tab title="活动收藏" class="collect-product">
           <img src="../../static/cs/收藏.png">
           <span>暂无活动收藏</span>
-          <button>随便逛逛</button></van-tab>
+          <router-link to="/"> <button>随便逛逛</button></router-link>
+					</van-tab>
       </van-tabs>
     </div>
 </template>
@@ -69,8 +83,8 @@
 		margin-right: .2rem;
 	}
 	.XhMyOrder-header-one span{
-		font-size: 18px !important;
-		line-height: 1rem;
+		font-size: 16px !important;
+		line-height: .7rem;
 	}
   .XhCollection-cs{
     background-color: #f7f7f7;
@@ -109,7 +123,7 @@
     flex-direction: column;
     height: 7rem;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
   }
   .XhCollection-cs .collect-product span{
     color: #cccccc;
@@ -123,5 +137,68 @@
     margin-top: 0.5rem;
     color: white;
   }
+.XhCollection-box-one-two{
+	width: 100%;
+	height: 2rem;
+	border-bottom: 1px solid #cfcfcf;
+}
+.XhCollection-box-one-two img{
+	width: 2rem;
+	height: 1.8rem;
+	float: left;
+	margin-top: .1rem;
+}
+.XhCollection-box-one-two-span span{
+	float: left;
+	font-size: 16px;
+	line-height: 1rem;
+	margin-left: .2rem;
+	}
+	.XhCollection-box-one-two-span{
+		width: 5rem;
+		height: 1rem;
+		float: right;
+	}	
+	.XhCollection-box-one-two-span-span1{
+		color: red;
+	}
+	.XhCollection-box-one-two-span-span2{
+		float: right !important;
+		color: #999999;
+		margin-right: .2rem;
+	}
+	.XhCollection-Bigbox{
+		width: 100%;
+		flex:1;
+		overflow-y:auto;
+		background: #f7f7f7;
+	}
+	.XhCollection-Bigbox-one-two{
+		width: 100%;
+		height: 2.5rem;
+		background: white;
+		margin-top: .3rem;
+	}
+.XhCollection-Bigbox-one-two img{
+	width: 2rem;
+	height: 1.8rem;
+	float: left;
+	margin-top: .1rem;
+}
+.XhCollection-Bigbox-one-two-span span{
+	float: left;
+	font-size: 16px;
+	line-height: 1.25rem;
+	margin-left: .2rem;
+	}
+.XhCollection-Bigbox-one-two-span{
+	width: 5rem;
+	height: 1.25rem;
+	text-align: left;
+}	
+.XhCollection-Bigbox-one-two-span-span1{
+	color: red !important;
+	line-height: 1.25rem;
+}
 
 </style>
