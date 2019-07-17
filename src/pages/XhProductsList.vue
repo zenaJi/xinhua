@@ -3,7 +3,6 @@
 <!--      首部-->
     <XhProductsList-top @showCountaa="showCount"></XhProductsList-top>
 <!--      综合-->
-<<<<<<< HEAD
     <XhProductsList-dropdown :ListTwo="ListTwo" v-if="ListTwo" @xinPinApi="xinPinApi"></XhProductsList-dropdown>
 <!--    仅看有货-->
     <XhProductsList-only @twoApi="twoApi" :ListTwo="ListTwo" v-if="ListTwo"></XhProductsList-only>
@@ -12,16 +11,6 @@
     <XhDroductsList-Grid-Two   v-show="showing" :allProducts="allProducts" v-if="allProducts.length"></XhDroductsList-Grid-Two>
 <!--    <h2 v-if="!allProducts.length" style="position: fixed;top: 3rem;left: 2rem">亲没有数据,请重新筛选</h2>-->
     <van-loading v-if="!allProducts.length" size="54px" color="#1989fa" style="position: fixed;top:50%;left:50%;margin-left: -0.88rem">加载中...</van-loading>
-=======
-    <XhProductsList-dropdown :ListTwo="ListTwo" v-if="ListTwo.length" @xinPinApi="xinPinApi"></XhProductsList-dropdown>
-<!--    仅看有货-->
-<!--    <XhProductsList-only :ListTwo="ListTwo" v-if="ListTwo.length"></XhProductsList-only>-->
-<!--    详情列表-->
-    <gridproductsList-one v-show="!showing" :allProducts="allProducts" ></gridproductsList-one>
-    <XhDroductsList-Grid-Two   v-show="showing" :allProducts="allProducts"></XhDroductsList-Grid-Two>
-<!--    <van-loading size="24px">加载中...</van-loading>-->
-
->>>>>>> 99e2ccabeb017439ab8af66decc029e75ec7f076
   </div>
 
 </template>
@@ -126,7 +115,6 @@
             console.log(err);
           });
         },
-<<<<<<< HEAD
         //多参数attributes请求
         twoApi(arr){
           this.allListData.attributes=arr.attributes
@@ -151,8 +139,6 @@
           });
 
         },
-=======
->>>>>>> 99e2ccabeb017439ab8af66decc029e75ec7f076
         searchlist(){
           this.listSearch=listSearch
         },
