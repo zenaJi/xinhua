@@ -8,20 +8,13 @@
         <div class="pic-cs">
           <span @click="on">头像</span>
           <div>
-            <img src="../../static/cs/个人资料_03.png" @click="on" >
+            <van-uploader :after-read="afterRead">
+            <img src="../../static/cs/个人资料_03.png" @click="on" ref="imgcs" style="border-radius:50%">
+            </van-uploader>
             <i class="iconfont icon-jiantouyou"  @click="on"></i>
           </div>
-					<van-popup v-model="pushow" :style="{ height: '30%', width:'80%' }">
-						<div class="main-cs-one">
-							<div class="main-cs-one-one">
-								<h3>请选择</h3>
-						<a href=""><h3>拍照</h3></a>	
-							<a href="">	<h3>相册</h3></a>
-							</div>
-			         <div class="main-cs-one-two"><span>取消</span></div>
-						</div>
-					</van-popup>
         </div>
+
 					
         <div class="name-cs">
           <span  @click="nc">昵称</span>
@@ -88,7 +81,9 @@
 			pushow:false,
 			time:false,
 			nichen:false,
-			currentDate: new Date()
+			currentDate: new Date(),
+      fileList:[],
+      minDate:"",
 	    }
   },
 
@@ -104,10 +99,18 @@
 		},
 		nc(){
 			this.nichen=true;
-		}
-  }
-  
-  
+		},
+    afterRead(file) {
+      this.$refs.imgcs.src=file.content;
+      localStorage.setItem("xh_person_img",file.content)
+    }
+
+  },
+      mounted() {
+        this.$refs.imgcs.src=localStorage.getItem("xh_person_img")
+      }
+
+
     }
 </script>
 
