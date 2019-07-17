@@ -98,7 +98,6 @@
       // 请求错误返回错误信息
       console.log(err)
     });
-
   },
     methods: {
       showPopup() {
@@ -152,4 +151,5 @@
 
 <style scoped>
 @import "../assets/css/XhProductDetail.css";
+/*@import "../assets/css/XhStyleOne.css";*/
 </style>

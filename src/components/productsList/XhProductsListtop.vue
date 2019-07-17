@@ -35,6 +35,7 @@
 </script>
 
 <style scoped>
-  @import "../../assets/css/XhProductsList.css";
+  /*@import "../../assets/css/XhProductsList.css";*/
+  @import "../../assets/css/XhStyleOne.css";
 
 </style>

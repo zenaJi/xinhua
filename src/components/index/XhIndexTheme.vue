@@ -18,5 +18,5 @@
 </script>
 
 <style scoped>
-  @import "../../assets/css/index.css";
+  /*@import "../../assets/css/XhStyleOne.css";*/
 </style>

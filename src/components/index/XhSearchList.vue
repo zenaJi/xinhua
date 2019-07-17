@@ -26,6 +26,8 @@
 </script>
 
 <style scoped>
+  /*@import "../../assets/css/XhStyleOne.css";*/
+
   .XhSearchList-box{
     width: 7.09rem;
     margin: .7rem  auto;

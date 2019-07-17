@@ -26,6 +26,8 @@
 </script>
 
 <style scoped>
+  /*@import "../../assets/css/XhStyleOne.css";*/
+
   .XhSearchPopular{
     width: 100%;
     margin-top:.75rem ;

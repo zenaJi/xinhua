@@ -53,14 +53,13 @@
         handleScroll () {
           var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
           // console.log(scrollTop)
-          // console.log(th is.$refs);
-          // if (scrollTop >600) {
-          //   this.$refs.xiang.style.borderBottomColor = "#c62f2e"
-          //   this.$refs.shop.style.borderBottomColor = "#F7F7F7"
-          // } else {
-          //   this.$refs.shop.style.borderBottomColor = "#c62f2e"
-          //   this.$refs.xiang.style.borderBottomColor = "#F7F7F7"
-          // }
+          if (scrollTop >600) {
+            this.$refs.xiang.style.borderBottomColor = "#c62f2e"
+            this.$refs.shop.style.borderBottomColor = "#F7F7F7"
+          } else {
+            this.$refs.shop.style.borderBottomColor = "#c62f2e"
+            this.$refs.xiang.style.borderBottomColor = "#F7F7F7"
+          }
         },
       }
     }
@@ -68,4 +67,5 @@
 
 <style scoped>
 @import "../../assets/css/XhProductDetail.css";
+/*@import "../../assets/css/XhStyleOne.css";*/
 </style>

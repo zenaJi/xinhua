@@ -94,5 +94,6 @@
 </script>
 
 <style scoped>
- @import '.././assets/css/classify/classify.css';
+ /*@import '.././assets/css/XhStyleOne.css';*/
+  @import '../assets/css/classify.css';
 </style>

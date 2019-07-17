@@ -70,5 +70,6 @@
 
 <style scoped>
   @import "../../assets/css/XhProductDetail.css";
+  /*@import "../../assets/css/XhStyleOne.css";*/
 
 </style>

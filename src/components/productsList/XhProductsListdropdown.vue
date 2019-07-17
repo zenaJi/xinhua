@@ -1,14 +1,14 @@
 <template>
 <!--  综合-->
     <div style="position: relative">
-      <div class="dropdownProductsList" style="position:fixed;z-index:16;width: 100vw">
+      <div class="dropdownProductsList" >
         <div class="dropdown-menu">
             <p @click="zongHe()" :class="{cs_red:zonghe_change}">{{zonghe}}{{zonghe_change_up?'∨':'∧'}}</p>
-            <div style="display: flex;position: relative;" @click="sale">
-              <p :class="{cs_red:sale_red}">销量</p><p style="display: flex;flex-direction: column;font-size: 8px;position: absolute;right:-0.24rem;top:-0.1rem"><span :class="{cs_red:sale_red_up}">∧</span><span style="position: absolute;top: 0.2rem" :class="{cs_red:sale_red_down}">∨</span></p>
+            <div class="xiaoliangdropdownProductsList"   @click="sale">
+              <p :class="{cs_red:sale_red}">销量</p><p class="dropdownProductsListxiaoliang"  ><span :class="{cs_red:sale_red_up}">∧</span><span   class="sureXhProductsListzz" :class="{cs_red:sale_red_down}">∨</span></p>
             </div>
-          <div style="display: flex;position: relative" @click="price">
-            <p :class="{cs_red:price_red}">价格</p><p style="display: flex;flex-direction: column;font-size: 8px;position: absolute;right:-0.24rem;top:-0.1rem"><span :class="{cs_red:price_red_up}">∧</span><span style="position: absolute;top: 0.2rem" :class="{cs_red:price_red_down}">∨</span></p>
+          <div class="xiaoliangdropdownProductsList" @click="price">
+            <p :class="{cs_red:price_red}">价格</p><p  class="dropdownProductsListxiaoliang"><span :class="{cs_red:price_red_up}">∧</span><span  class="sureXhProductsListzz" :class="{cs_red:price_red_down}">∨</span></p>
           </div>
         </div>
         <van-button type="primary" @click="showPopup"  class="buttonProductsList">
@@ -17,10 +17,10 @@
         <van-popup v-model="show"    position="right" class="popupXhProductsList">
           <ul class="screenXhProductsList">
             <li>
-              <h3>价格区间</h3>
               <div class="popup_boxXhProductsList">
                 <input type="text" placeholder="最低价" > &nbsp; —— &nbsp; <input type="text" placeholder="最高价" >
               </div>
+              <h3>价格区间</h3>
             </li>
             <li>
               <h3>品牌</h3>
@@ -29,16 +29,12 @@
               <h3>类别</h3>
             </li>
             <li v-for="item in ListTwo">
-              <h3>{{item.group}}</h3>
-              <div class="">
-                <p v-for="i in item.nameAndCounts"  >{{i.name}}</p>
+              <div class="pXhProductsListshuang"  >
+                <span v-for="i in item.nameAndCounts" >{{i.name}}</span>
               </div>
+              <h3>{{item.group}}</h3>
             </li>
-<!--            <div class="hello">-->
-<!--              <div @click="showAll = !showAll" class="show-more">{{word}}</div>-->
-<!--              <div v-for='item in showList'>{{item}}</div>-->
-<!--            </div>-->
-    </ul>
+          </ul>
         </van-popup>
       </div>
       <div :class="{XhProductsListdropdown_zonghe_cs:zonghe_class_change,XhProductsListdropdown_zonghe_cs_change:!zonghe_class_change}" class="XhProductsListdropdown-zonghe-cs">
@@ -151,34 +147,12 @@
 
         }
       },
-      computed:{
-        showList:function(){
-          if(this.showAll == false){                    //当数据不需要完全显示的时候
-            var showList = [];　　　　　　　　　　　　　　　 //定义一个空数组
-            if(this.toLearnList.length > 3){　　　　　　　//这里我们先显示前三个
-              for(var i=0;i<3;i++){
-                showList.push(this.toLearnList[i])
-              }
-            }else{
-              showList = this.toLearnList
-            }
-            return showList;　　　　　　　　　　　　　　　　 //返回当前数组
-          }else{
-            return this.toLearnList;
-          }
-        },
-        word:function(){
-          if(this.showAll == false){　　　　　　　　　　　//对文字进行处理
-            return '展开'
-          }else{
-            return '收起'
-          }
-        }
-      }
+
+
     }
 </script>
 
 <style scoped>
-  @import "../../assets/css/XhProductsList.css";
-
+  /*@import "../../assets/css/XhProductsList.css";*/
+  @import "../../assets/css/XhStyleOne.css";
 </style>

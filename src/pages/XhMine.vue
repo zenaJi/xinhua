@@ -74,7 +74,7 @@
       <div class="XHnav">
         <router-link to="/XhDiscounts">
           <h6>2</h6>
-          <h5>优惠卷</h5>
+          <h5>优惠劵</h5>
         </router-link>
         <img src="../../static/images/mine/xhimg/s.png" />
         <router-link to="/XhGiftCards">
