@@ -13,11 +13,15 @@
         <div class="XHheader-tow">
           <div class="XHheader-tow-one">
             <router-link to="/XhPersonalMessage">
-              <img src="../assets/xhimg/error.ed5b6e5df12b3313.png">
+              <img :src="userMessage.img">
             </router-link>
           </div>
           <div class="XHheader-tow-tow">
-          <router-link to="/XhPersonalMessage"> <div class="XHheader-tow-tow-one"><span>17398681195</span></div></router-link>
+          <router-link to="/XhPersonalMessage">
+            <div class="XHheader-tow-tow-one">
+              <span>{{userMessage.mobile}}</span>
+            </div>
+          </router-link>
             
 						<router-link to="/XhMember">
 						<div class="XHheader-tow-tow-tow">
@@ -127,12 +131,37 @@
 </template>
 
 <script>
+  import api from '../XinHuaApi'
   import XhFooter from '../components/commons/XhFooter'
   export default {
     name: "XHmine",
     components:{
       XhFooter
     },
+    data(){
+      return{
+        userMessage:{}
+      }
+    },
+    methods:{
+      getUser(){
+        api.get('/api/xinhua/user').then(data=>{
+          if(data.status===200){
+            if(data.data.status===0){
+              this.userMessage=data.data.datas;
+              localStorage.setItem('mobile',data.data.datas.mobile)
+            }else{
+              console.log(data.data.err)
+            }
+          }
+        }).catch(err=>{
+          console.log(err)
+        })
+      }
+    },
+    created() {
+      this.getUser()
+    }
   }
 </script>
 
@@ -178,6 +207,7 @@
   .XHheader-tow-one img{
     width: 1.6rem;
     height: 1.6rem;
+    border-radius: 50%;
   }
   .XHheader-tow-tow{
     width: 3rem;
