@@ -31,11 +31,7 @@
 						<input @click="XhLoginPost()" type="button" class="FooterBoxSign" value="登录">
 					</div>
 				</div>
-				
-				
-				
-				
-				
+
 				<div class="FooterBoxThird">
 					<div class="one">
 						<img src="../assets/xhimg/wx.png"  alt="">
@@ -259,8 +255,9 @@
 						if(res.status == 200){
 							if(res.data.status == 0){
 								console.log(this.userId)
+                localStorage.setItem('mobile',this.userId)
 								this.$toast("登录成功！")
-								this.$router.push("/")
+								this.$router.push("/XhMine")
 							}else if(res.data.status == 2){
 								this.$toast(res.data.err)
 							}
@@ -283,8 +280,9 @@
 						this.$axios.post(url3).then((res)=>{
 							if(res.status==200){
 								if(res.data.status==0){
+                  localStorage.setItem('mobile',this.userPhone)
 									this.$toast(res.data.err)
-									this.$router.push("/")
+									this.$router.push("/XhMine")
 								}else if(res.data.status==2){
 									this.$toast(res.data.err)
 								}
@@ -329,11 +327,11 @@
 		height: .87rem;
 	}
 	.TimeCoad{
-	  height: .7rem;
+	  height: .8rem;
 	  width: 2.5rem;
 	  position: absolute;
-	  top: 2.4rem;
-	  right: .1rem;
+	  top: 2.34rem;
+	  right: .04rem;
 	  background: gainsboro;
 	  color: #FFFFFF;
 	  font-size: .2rem;
