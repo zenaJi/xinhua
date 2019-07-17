@@ -1,7 +1,7 @@
 <template>
       <div class="XhShoppingCartDelete">
         <van-checkbox v-model="product.checked" class="AllChecked" checked-color="#c72f2e" @click="allChecke">全选</van-checkbox>
-        <button class="SubmitCollect">移入收藏夹</button>
+        <button class="SubmitCollect" @click="collectchecked">移入收藏夹</button>
         <div class="SubmitDelete" @click="deletechecked" >删除</div>
       </div>
 </template>
@@ -10,18 +10,15 @@
     export default {
         name: "XhShoppingCartDelete",
         props:["product"],
-        data(){
-          return{
-            checked:true
-          }
-        },
         methods:{
           allChecke(){
             this.$emit("allChecked");
           },
           deletechecked(){
-            console.log(1);
             this.$emit("allDelete");
+          },
+          collectchecked(){
+            this.$emit("allcollect");
           }
         }
     }
