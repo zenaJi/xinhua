@@ -76,7 +76,7 @@
 
             });
             setTimeout(()=>{console.log(this.product.data);},100)
-          },
+    },
           changeManage(){
             if(this.manage==1){
               this.manage=0;

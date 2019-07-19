@@ -5,7 +5,7 @@
       <!--      轮播图-->
       <xh-product-detail-top-swipe :RotaryPlantingMap="RotaryPlantingMap"></xh-product-detail-top-swipe>
       <!--     收藏-->
-      <xh-product-detail-collection :detailData="detailData"></xh-product-detail-collection>
+      <xh-product-detail-collection @jionCollection="jionCollection" @removeCollection="removeCollection" :detailData="detailData"></xh-product-detail-collection>
       <!--      优惠券~用户~出版-->
       <xh-product-detail-coupon :detailData="detailData" :itemId="itemId"></xh-product-detail-coupon>
       <!--      图片详情-->
@@ -103,6 +103,7 @@
       showPopup() {
         this.show = true;
       },
+      //加入购物车
       jionCart(){
         var _this=this;
         var extentData={
@@ -133,7 +134,62 @@
           // 请求错误返回错误信息
           console.log(err)
         })
-      }
+      },
+      //加入收藏夹
+      jionCollection(){
+        var _this=this;
+        var extentData={
+          price:_this.detailData.lowPrice,
+          img:_this.img,
+          value:1,
+          checked:true
+        };
+        api.post("/api/xinhua/collect",{
+          goodsId:parseInt(_this.itemId),
+          name:_this.detailData.title,
+          extension:JSON.stringify(extentData)
+        }).then(data=>{
+          // 判断http请求状态码,200为请求成功
+          if(data.status===200){
+            // 判断接口请求是否成功 0为成功
+            if(data.data.status===0){
+              console.log(_this.itemId);
+              this.product=data.data.datas;
+              console.log(data.data.err);
+              // 成功时接收数据
+            }else{
+              // 失败时打印错误信息
+              console.log(data.data.err)
+            }
+          }
+        }).catch(err=>{
+          // 请求错误返回错误信息
+          console.log(err)
+        })
+      },
+      //移除收藏夹
+      removeCollection(){
+        var _this=this;
+        api.del("/api/xinhua/collect/"+_this.itemId).then(data=>{
+          // 判断http请求状态码,200为请求成功
+          if(data.status===200){
+            // 判断接口请求是否成功 0为成功
+            if(data.data.status===0){
+              console.log(_this.itemId);
+              this.product=data.data.datas;
+              console.log(data.data.err);
+              // 成功时接收数据
+            }else{
+              // 失败时打印错误信息
+              console.log(data.data.err)
+            }
+          }
+        }).catch(err=>{
+          // 请求错误返回错误信息
+          console.log(err)
+        })
+      },
+
     },
     components:{
       "xh-product-detail-top":XhProductDetailtop,

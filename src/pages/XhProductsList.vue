@@ -57,8 +57,6 @@
      created(){
        // console.log(this.listSearch);
        this.loadingData();
-       console.log(this.itemId);
-       console.log(this.detailData.title);
       },
       mounted(){
         document.addEventListener("scroll",this.reqPages)
