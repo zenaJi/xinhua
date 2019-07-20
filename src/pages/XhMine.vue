@@ -136,7 +136,7 @@
           if (data.status === 200) {
             if (data.data.status === 0) {
               this.userMessage = data.data.datas;
-              localStorage.setItem('mobile', data.data.datas.mobile)
+              sessionStorage.setItem('mobile', data.data.datas.mobile)
             } else {
               console.log(data.data.err)
             }
