@@ -201,73 +201,8 @@
     }
 </script>
 
-<style scoped>
-  @import "../../assets/css/XhProductsList.css";
-  .XhProductsListonly-cs{
-    position: fixed;
-    z-index: 6;
-    top: 1.87rem;
-    display: flex;
-    justify-content: space-around;
-    width: 100vw;
-    background-color:#f7f7f7 ;
-    height: 0.8rem;
-  }
-  .XhProductsListonly-cs>div{
-    background-color: white;
-    text-align: center;
-    width:1.52rem;
-    height: 0.57rem;
-    line-height: 0.57rem;
-    color: #939393;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .XhProductsListonly-cs>div.XhProductsListonly_cs_red{
-    color: red;
-    border: 1px solid red;
-  }
-  .XhProductsListonly-two-cs{
-    max-height: 10.84rem;
-    width: 100vw;
-    background-color: #ffffff;
-    position: fixed;
-    z-index:100;
-    top: 2.48rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding:0 0.3rem 0 0.3rem ;
-    text-align: left;
-    overflow-y: scroll;
-  }
-  .XhProductsListonly-two-cs>div{
-    width: 3.16rem;
-    height: 0.8rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    border-bottom: 1px solid #ededed;
-    line-height: 0.8rem;
-    display: flex;
-    justify-content: space-between;
-  }
-  .XhProductsListonly-two-cs>div:last-child{
-    margin-top: 0.2rem;
-    width: 100vw;
-    display: flex;
-    justify-content: space-around;
-    border-bottom: none;
-  }
-  .XhProductsListonly-two-cs>div:last-child>div{
-    width: 3.12rem;
-    height: 0.88rem;
-    text-align: center;
-  }
-  .XhProductsListonly-two-cs>div.box_select_red{
-  color: red;
-  border-bottom:1px solid red;
-}
+<style>
+  /*@import "../../assets/css/XhProductsList.css";*/
+
 
 </style>

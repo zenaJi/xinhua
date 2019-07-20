@@ -2,7 +2,9 @@
   <div class="Login">
     <div class="LoginHeader">
       <div class="LoginHeaderCenter">
-        <van-icon name="arrow-left"/>
+        <router-link to="/">
+          <van-icon name="arrow-left"/>
+        </router-link>
       </div>
     </div>
     <div class="LoginTitle">

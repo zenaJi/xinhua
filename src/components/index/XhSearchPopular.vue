@@ -25,7 +25,7 @@
     }
 </script>
 
-<style scoped>
+<style>
   /*@import "../../assets/css/XhStyleOne.css";*/
 
   .XhSearchPopular{

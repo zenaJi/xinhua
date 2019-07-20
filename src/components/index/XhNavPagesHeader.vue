@@ -18,7 +18,7 @@
     }
 </script>
 
-<style scoped>
+<style>
   .XhNavPagesHeader {
       display: flex;
       z-index: 9;

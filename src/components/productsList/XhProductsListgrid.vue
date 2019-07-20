@@ -16,13 +16,9 @@
                </div>
                 <div class="likeccXhProductsList">
                   <div  @click="jionCart(index)">
-                    <van-icon name="shopping-cart-o" color="#c62f2e" />
+                    <van-icon name="shopping-cart-o" color="#c62f2e"/>
                   </div>
-                    <div>
-                      <van-icon  @click="showCount(index)" name="like-o" v-show="flag" v-if="num==index?!flag:flag"   />
-                      <van-icon @click="showCount(index)" name="like"  v-if="num==index?flag:!flag"  color="#c62f2e" class="bProductDetail"  />
-                    </div>
-                </div>
+                </div> 
               </div>
             </div>
           </div>
@@ -59,7 +55,7 @@
     }
 </script>
 
-<style scoped>
-  @import "../../assets/css/XhProductsList.css";
+<style>
+  /*@import "../../assets/css/XhProductsList.css";*/
 
 </style>
