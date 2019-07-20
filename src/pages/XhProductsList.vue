@@ -1,14 +1,14 @@
 <template>
   <div class="XhProductsList">
 <!--      首部-->
-    <xh-productsList-top @showCountaa="showCount"></xh-productsList-top>
+    <xh-productsList-top></xh-productsList-top>
 <!--      综合-->
     <xh-productsList-dropdown :ListTwo="ListTwo" v-if="ListTwo" @xinPinApi="xinPinApi"></xh-productsList-dropdown>
 <!--    仅看有货-->
     <xh-productsList-only @twoApi="twoApi" :ListTwo="ListTwo" v-if="ListTwo"></xh-productsList-only>
 <!--    详情列表-->
-    <gridproductsList-one  @jionCart="jionCart" v-show="!showing" :allProducts="allProducts" v-if="allProducts.length"></gridproductsList-one>
-    <xh-droductsList-grid-two   v-show="showing" :allProducts="allProducts" v-if="allProducts.length"></xh-droductsList-grid-two>
+    <gridproductsList-one  @jionCart="jionCart" v-show="!theme" :allProducts="allProducts" v-if="allProducts.length"></gridproductsList-one>
+    <xh-droductsList-grid-two   v-show="theme" :allProducts="allProducts" v-if="allProducts.length"></xh-droductsList-grid-two>
 <!--    <h2 v-if="!allProducts.length" style="position: fixed;top: 3rem;left: 2rem">亲没有数据,请重新筛选</h2>-->
     <van-loading v-if="!allProducts.length" size="54px" color="#1989fa" style="position: fixed;top:50%;left:50%;margin-left: -0.88rem">加载中...</van-loading>
   </div>
@@ -18,7 +18,6 @@
 <script>
   //引入api
   import api from '.././XinHuaApi'
-
   import gridproductsList from '../components/productsList/XhProductsListgrid'
   import XhDroductsListGridTwo from '../components/productsList/XhDroductsListGridTwo'
   import XhProductsListtop from '../components/productsList/XhProductsListtop'
@@ -28,6 +27,7 @@
         name: "XhProductsList",
       data() {
         return {
+          theme:false,
           showing:true,
           allListData:{
             pageNo:0,//页码
@@ -55,12 +55,17 @@
         }
       },
      created(){
+       // this.dataLoading();
+       fetch("http://localhost:3000/xinhua/api/theme").then(res => {
+         res.json().then(data => {
+           this.theme = data.theme[0].theme;
+         });
+       });
        // console.log(this.listSearch);
        this.loadingData();
       },
       mounted(){
         document.addEventListener("scroll",this.reqPages)
-
       },
       destroyed(){
         document.removeEventListener("scroll",this.reqPages)
@@ -154,10 +159,10 @@
         searchlist(){
           this.listSearch=listSearch
         },
-        showCount(){
-          this.showing = !this.showing;
-          // console.log(this.showing);
-        },
+        // showCount(){
+        //   this.showing = !this.showing;
+        //   // console.log(this.showing);
+        // },
         reqPages(){
           var oldHeight = document.documentElement.scrollHeight
           this.list_height =document.documentElement.scrollHeight
@@ -203,7 +208,10 @@
               console.log(err)
             })
 
-        }
+        },
+
+
+
       },
       components:{
         'gridproductsList-one':gridproductsList,
@@ -215,9 +223,7 @@
     }
 </script>
 
-<style scoped>
+<style>
   /*@import "../assets/css/XhProductsList.css";*/
-  @import "../assets/css/XhStyleOne.css";
-
-
+  /*@import "../assets/css/XhStyleOne.css";*/
 </style>

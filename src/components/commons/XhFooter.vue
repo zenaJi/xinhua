@@ -42,6 +42,6 @@
     }
 </script>
 
-<style scoped>
-  @import "../../assets/css/XhStyleOne.css";
+<style>
+  /*@import "../../assets/css/XhStyleOne.css";*/
 </style>
