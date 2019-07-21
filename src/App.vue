@@ -9,7 +9,7 @@ export default {
   name: 'App',
   data(){
     return{
-      theme:false
+      theme:true
     }
   },
   methods:{
@@ -29,16 +29,16 @@ export default {
     }
   },
   created() {
-    // fetch("http://localhost:3000/xinhua/api/theme").then(res => {
-    //   res.json().then(data => {
-    //     console.log(data);
-    //     this.theme = data.theme[0].theme;
-    //     console.log(this.theme);
-    //     // this.changeTheme()
-    //
-    //   });
-    // });
-    this.getCss1()
+    fetch("http://localhost:3000/xinhua/api/theme").then(res => {
+      res.json().then(data => {
+        console.log(data);
+        this.theme = data.theme[0].theme;
+        console.log(this.theme);
+        this.changeTheme()
+
+      });
+    });
+    // this.getCss1()
   }
 }
 </script>

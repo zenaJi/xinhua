@@ -1,7 +1,7 @@
 <template>
     <div class="XhAddressManagement-cs">
       <div class="header-cs">
-        <span class="iconfont icon-fanhui" @click="$router.push('/XhCountSetting')"></span>
+        <span class="iconfont icon-fanhui" @click="$router.back()"></span>
         <span class="set-cs">管理收货地址</span>
       </div>
      <div class="XhAddressManagement-main">

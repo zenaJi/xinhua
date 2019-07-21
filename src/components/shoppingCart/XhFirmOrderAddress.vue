@@ -1,6 +1,6 @@
 <template>
     <div class="XhFirmOrderAddress">
-      <router-link to="/XhSelectAddress">
+      <router-link to="/XhAddressManagement">
         <div class="XhFirmOrderAddress-wrapper">
           <div class="XhFirmOrderAddress-Location-wrapper">
             <div class="XhFirmOrderAddress-Location">

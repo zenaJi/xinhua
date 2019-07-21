@@ -1,5 +1,5 @@
 <template>
-    <div class="xinhua-header">
+    <div class="xinhua-header" id="headerBox">
       <header>
         <div class="header-title flex">
 <!--          <i class="iconfont icon-saoyisao"></i>-->
@@ -29,6 +29,6 @@
 </script>
 
 <style scoped>
-  /* @import "../../assets/css/index.css"; */
+   /*@import "../../assets/css/index.css"; */
 
 </style>

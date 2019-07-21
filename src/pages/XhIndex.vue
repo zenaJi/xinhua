@@ -4,69 +4,73 @@
       <xh-header-one v-if='theme' :defaultKey="defaultKey"></xh-header-one>
       <xh-header-two v-if='!theme' :defaultKey="defaultKey"></xh-header-two>
       <!--中间内容-->
-      <main class="index-main">
+      <main class="index-main" >
         <!--下拉刷新-->
-        <van-pull-refresh @refresh="onRefresh" v-model="isLoading">
-          <!--轮播图-->
-          <xh-index-swiper :indexSwiper="indexSwipers"></xh-index-swiper>
-          <!--导航-->
-          <div class="index-nav">
-            <ul class="flex">
-              <li :key="index" v-for="(item,index) in indexNav">
-              <xh-index-nav :item="item"></xh-index-nav>
-            </li>
-            </ul>
-          </div>
-          <!--消息通知-->
-          <div v-if="!theme">
-            <van-notice-bar
-              text="每日签到领红包！ 新用户注册即送5元   5万图书5折封顶|限时直降|满68减20"
-              left-icon="volume-o"
-            />
-          </div>
-          <!--主题-->
-          <xh-index-theme v-if="theme" :themeData="indexTheme"></xh-index-theme>
-          <!--主要列表-->
-          <xh-index-list v-if="theme" :listData="indexListTheme"></xh-index-list>
-          <!--新华优选-->
+        <div v-if="indexData.length">
+          <van-pull-refresh @refresh="onRefresh" v-model="isLoading">
+            <!--轮播图-->
+            <xh-index-swiper :indexSwiper="indexSwipers"></xh-index-swiper>
+            <!--导航-->
+            <div class="index-nav">
+              <ul class="flex">
+                <li :key="index" v-for="(item,index) in indexNav">
+                <xh-index-nav :item="item"></xh-index-nav>
+              </li>
+              </ul>
+            </div>
+            <!--消息通知-->
+            <div v-if="!theme">
+              <van-notice-bar
+                text="每日签到领红包！ 新用户注册即送5元   5万图书5折封顶|限时直降|满68减20"
+                left-icon="volume-o"
+              />
+            </div>
+            <!--主题-->
+            <xh-index-theme v-if="theme" :themeData="indexTheme"></xh-index-theme>
+            <!--主要列表-->
+            <xh-index-list v-if="theme" :listData="indexListTheme"></xh-index-list>
+            <!--新华优选-->
+            <!--banner图-->
+            <div v-if="theme" class="xh-banner">
+              <a href="">
+                <img :src="indexBanner" alt="">
+              </a>
+            </div>
+            <!--新华优选内容-->
+            <div v-if="theme" class="xh-select">
+              <xh-index-list :listData="indexSelect_cs"></xh-index-list>
+            </div>
+            <!--作者轮播图-->
+            <div v-if="theme" class="author-banner">
+              <xh-index-swiper :indexSwiper="indexAuthor_cs"></xh-index-swiper>
+            </div>
+            <!--图书分类-->
+            <div v-if="theme" class="book-classify">
+              <xh-index-list :listData="indexBookList_cs"></xh-index-list>
+            </div>
+          </van-pull-refresh>
           <!--banner图-->
-          <div v-if="theme" class="xh-banner">
+          <div v-if="!theme" class="xh-banner">
             <a href="">
               <img :src="indexBanner" alt="">
             </a>
           </div>
-          <!--新华优选内容-->
-          <div v-if="theme" class="xh-select">
-            <xh-index-list :listData="indexSelect_cs"></xh-index-list>
-          </div>
+          <!--主要列表-->
+          <xh-index-list v-if="!theme" :listData="indexListTheme"></xh-index-list>
           <!--作者轮播图-->
-          <div v-if="theme" class="author-banner">
+          <div v-if="!theme" class="author-banner">
             <xh-index-swiper :indexSwiper="indexAuthor_cs"></xh-index-swiper>
           </div>
-          <!--图书分类-->
-          <div v-if="theme" class="book-classify">
-            <xh-index-list :listData="indexBookList_cs"></xh-index-list>
+          <!--新华分类-->
+          <xh-index-class v-if="!theme" :indexBookList_cs="indexBookList_class"></xh-index-class>
+          <!--新华优选内容-->
+          <div v-if="!theme" class="xh-select">
+            <xh-index-list :listData="indexSelect_cs"></xh-index-list>
           </div>
-        </van-pull-refresh>
-        <!--banner图-->
-        <div v-if="!theme" class="xh-banner">
-          <a href="">
-            <img :src="indexBanner" alt="">
-          </a>
         </div>
-        <!--主要列表-->
-        <xh-index-list v-if="!theme" :listData="indexListTheme"></xh-index-list>
-        <!--作者轮播图-->
-        <div v-if="!theme" class="author-banner">
-          <xh-index-swiper :indexSwiper="indexAuthor_cs"></xh-index-swiper>
-        </div>
-        <!--新华分类-->
-        <xh-index-class v-if="!theme" :indexBookList_cs="indexBookList_class"></xh-index-class>
-        <!--新华优选内容-->
-        <div v-if="!theme" class="xh-select">
-          <xh-index-list :listData="indexSelect_cs"></xh-index-list>
-        </div>
+        <van-loading v-if="!indexData.length" size="54px" color="#C62F2E" style="position: fixed;top:50%;left:50%;margin-left: -0.88rem">加载中...</van-loading>
       </main>
+
 
       <!--底部-->
       <xh-footer></xh-footer>
@@ -99,7 +103,7 @@
       },
       data(){
         return{
-          theme:false,
+          theme:true,
           isLoading: false,
           indexData:[],
           indexSwipers:[],
@@ -132,12 +136,13 @@
       },
       methods:{
         changeHeader(){
-          let scrollTop =$('main').scrollTop();
-          if(scrollTop>3400){
-            $('.xinhua-header').css({'display':'none'});
-          }else{
-            $('.xinhua-header').css({'display':'block'});
-          }
+            let scrollTop =$('main').scrollTop();
+            if(scrollTop>3400){
+              $('#headerBox').css({'display':'none'});
+            }else{
+              $('#headerBox').css({'display':'block'});
+            }
+
         },
         loadingIndexData(){
          api.get('/api/xinhua/index').then(data => {

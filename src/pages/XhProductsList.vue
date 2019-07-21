@@ -10,7 +10,7 @@
     <gridproductsList-one  @jionCart="jionCart" v-show="!theme" :allProducts="allProducts" v-if="allProducts.length"></gridproductsList-one>
     <xh-droductsList-grid-two   v-show="theme" :allProducts="allProducts" v-if="allProducts.length"></xh-droductsList-grid-two>
 <!--    <h2 v-if="!allProducts.length" style="position: fixed;top: 3rem;left: 2rem">亲没有数据,请重新筛选</h2>-->
-    <van-loading v-if="!allProducts.length" size="54px" color="#1989fa" style="position: fixed;top:50%;left:50%;margin-left: -0.88rem">加载中...</van-loading>
+    <van-loading v-if="!allProducts.length" size="54px" color="#C62F2E" style="position: fixed;top:50%;left:50%;margin-left: -0.88rem">加载中...</van-loading>
   </div>
 
 </template>
@@ -27,7 +27,7 @@
         name: "XhProductsList",
       data() {
         return {
-          theme:false,
+          theme:true,
           showing:true,
           allListData:{
             pageNo:0,//页码
