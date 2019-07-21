@@ -75,7 +75,7 @@
                   // 判断接口请求是否成功 0为成功
                   if (data.data.status === 0) {
                     // 成功时接收数据
-                    localStorage.removeItem("mobile")
+                    sessionStorage.removeItem("mobile")
                     this.$router.push("/")
                     this.$toast('您已退出登录');
                   } else {

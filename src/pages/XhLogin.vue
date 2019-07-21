@@ -261,7 +261,7 @@
             if (res.status == 200) {
               if (res.data.status == 0) {
                 console.log(this.userId)
-                localStorage.setItem('mobile', this.userId)
+                sessionStorage.setItem('mobile', this.userId)
                 this.$toast("登录成功！")
                 this.$router.push("/XhMine")
               } else if (res.data.status == 2) {
