@@ -1,12 +1,12 @@
 <template>
     <ul class="index-list-box flex">
-      <li class="index-list-each" v-for="(item,index) in each.indexListBrach" :key="index">
-        <a href="">
+      <li class="index-list-each"  v-for="(item,index) in each.indexListBrach" :key="index">
+        <router-link :to="path+'/'+item.goodsId">
           <img :src="'http://api.hll666.xyz/api/xinhua/img?imgUrl='+urlEncode(item.src)" alt="图片加载失败">
           <p>{{item.tltle}}</p>
           <span>￥{{item.price1}}</span>
           <s v-if="item.price2">￥{{item.price2}}</s>
-        </a>
+        </router-link>
       </li>
     </ul>
 </template>
@@ -15,6 +15,11 @@
     export default {
       props:["each"],
       name: "XhIndexListEach",
+      data(){
+        return{
+          path:'/XhProductDetail',
+        }
+      },
       methods:{
         urlEncode(str){
           if(str.indexOf("https:")==-1){
@@ -23,11 +28,11 @@
           }else{
             return encodeURI(str)
           }
-        }
+        },
       }
     }
 </script>
 
-<style scoped>
-  @import '../../assets/css/index.css';
+<style>
+  /*@import '../../assets/css/index.css';*/
 </style>

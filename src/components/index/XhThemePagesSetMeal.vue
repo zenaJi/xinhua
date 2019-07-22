@@ -6,7 +6,7 @@
     <div class="XhThemePagesSetMeal-list-box">
       <ul class="XhThemePagesSetMeal-list-warpper">
         <li class="XhThemePagesSetMeal-list">
-          <img class="XhThemePagesSetMeal-img" src="https://img1.xinhuashudian.com/bookbasepic/C/02367/3720084-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200">
+          <img class="XhThemePagesSetMeal-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nazb1tlj305205kaa4.jpg">
           <p class="XhThemePagesSetMeal-list-title">小猪佩奇主题绘本(共5册)</p>
           <div class="XhThemePagesSetMeal-list-Price-wrapper">
             <p class="XhThemePagesSetMeal-list-Price">¥58.50</p>
@@ -14,7 +14,7 @@
           </div>
         </li>
         <li class="XhThemePagesSetMeal-list">
-          <img class="XhThemePagesSetMeal-img" src="https://img1.xinhuashudian.com/bookbasepic/C/02367/3720084-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200">
+          <img class="XhThemePagesSetMeal-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nazb1tlj305205kaa4.jpg">
           <p class="XhThemePagesSetMeal-list-title">小猪佩奇主题绘本(共5册)</p>
           <div class="XhThemePagesSetMeal-list-Price-wrapper">
             <p class="XhThemePagesSetMeal-list-Price">¥58.50</p>
@@ -22,7 +22,7 @@
           </div>
         </li>
         <li class="XhThemePagesSetMeal-list">
-          <img class="XhThemePagesSetMeal-img" src="https://img1.xinhuashudian.com/bookbasepic/C/02367/3720084-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200">
+          <img class="XhThemePagesSetMeal-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nazb1tlj305205kaa4.jpg">
           <p class="XhThemePagesSetMeal-list-title">小猪佩奇主题绘本(共5册)</p>
           <div class="XhThemePagesSetMeal-list-Price-wrapper">
             <p class="XhThemePagesSetMeal-list-Price">¥58.50</p>
@@ -30,7 +30,7 @@
           </div>
         </li>
         <li class="XhThemePagesSetMeal-list">
-          <img class="XhThemePagesSetMeal-img" src="https://img1.xinhuashudian.com/bookbasepic/C/02367/3720084-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200">
+          <img class="XhThemePagesSetMeal-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nazb1tlj305205kaa4.jpg">
           <p class="XhThemePagesSetMeal-list-title">小猪佩奇主题绘本(共5册)</p>
           <div class="XhThemePagesSetMeal-list-Price-wrapper">
             <p class="XhThemePagesSetMeal-list-Price">¥58.50</p>
@@ -38,7 +38,7 @@
           </div>
         </li>
         <li class="XhThemePagesSetMeal-list">
-          <img class="XhThemePagesSetMeal-img" src="https://img1.xinhuashudian.com/bookbasepic/C/02367/3720084-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200">
+          <img class="XhThemePagesSetMeal-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nazb1tlj305205kaa4.jpg">
           <p class="XhThemePagesSetMeal-list-title">小猪佩奇主题绘本(共5册)</p>
           <div class="XhThemePagesSetMeal-list-Price-wrapper">
             <p class="XhThemePagesSetMeal-list-Price">¥58.50</p>
@@ -46,7 +46,7 @@
           </div>
         </li>
         <li class="XhThemePagesSetMeal-list">
-          <img class="XhThemePagesSetMeal-img" src="https://img1.xinhuashudian.com/bookbasepic/C/02367/3720084-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200">
+          <img class="XhThemePagesSetMeal-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nazb1tlj305205kaa4.jpg">
           <p class="XhThemePagesSetMeal-list-title">小猪佩奇主题绘本(共5册)</p>
           <div class="XhThemePagesSetMeal-list-Price-wrapper">
             <p class="XhThemePagesSetMeal-list-Price">¥58.50</p>
@@ -64,7 +64,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .XhThemePagesSetMeal {
     padding-bottom: 0.3rem;
     padding-top: 0.3rem;

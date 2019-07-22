@@ -7,7 +7,7 @@
       <ul class="XhThemePagesInitiation-list-wrapper">
         <li class="XhThemePagesInitiation-list">
           <div class="XhThemePagesInitiation-list-img-wrapper">
-            <img class="XhThemePagesInitiation-list-img" src="https://img7.xinhuashudian.com/bookbasepic/C/02293/3625465-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200" alt="">
+            <img class="XhThemePagesInitiation-list-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50kg7j6fjj305k03faa0.jpg" alt="">
           </div>
           <div class="XhThemePagesInitiation-list-content">
             <p class="XhThemePagesInitiation-list-content-title">小象小象你去哪儿/宝宝的第一套楼梯书</p>
@@ -17,7 +17,7 @@
         </li>
         <li class="XhThemePagesInitiation-list">
           <div class="XhThemePagesInitiation-list-img-wrapper">
-            <img class="XhThemePagesInitiation-list-img" src="https://img1.xinhuashudian.com/bookbasepic/C/01779/2836873-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200" alt="">
+            <img class="XhThemePagesInitiation-list-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50kk8tzdnj303b05k747.jpg" alt="">
           </div>
           <div class="XhThemePagesInitiation-list-content">
             <p class="XhThemePagesInitiation-list-content-title">蒲蒲兰绘本馆：小熊宝宝认知绘本(共10册) [0-2岁]</p>
@@ -27,7 +27,7 @@
         </li>
         <li class="XhThemePagesInitiation-list">
           <div class="XhThemePagesInitiation-list-img-wrapper">
-            <img class="XhThemePagesInitiation-list-img" src="https://img7.xinhuashudian.com/bookbasepic/C/02293/3625465-fm.jpg?x-oss-process=image/resize,m_lfit,limit_0,w_200,h_200" alt="">
+            <img class="XhThemePagesInitiation-list-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50kg7j6fjj305k03faa0.jpg" alt="">
           </div>
           <div class="XhThemePagesInitiation-list-content">
             <p class="XhThemePagesInitiation-list-content-title">小象小象你去哪儿/宝宝的第一套楼梯书</p>
@@ -47,7 +47,7 @@
     }
 </script>
 
-<style scoped>
+<style>
   .XhThemePagesInitiation {
     margin-top: .1rem;
     padding-top: .3rem;

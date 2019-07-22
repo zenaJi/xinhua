@@ -3,19 +3,19 @@
       <div class="wrapper">
         <swiper :options="swiperOption">
           <swiper-slide>
-            <img class="XhThemePagesSwiper-img" src="https://img1.xinhuashudian.com/images/2019/05/30/b411e047-0e90-4d12-b91f-aac93569f217.jpg?x-oss-process=image/resize,m_lfit,limit_0,h_300">
+            <img class="XhThemePagesSwiper-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nh4j5ycj30ku08c424.jpg">
           </swiper-slide>
           <swiper-slide>
-            <img class="XhThemePagesSwiper-img" src="https://img1.xinhuashudian.com/images/2018/12/13/398fddc4-aad0-46d1-b910-f26462fe2c33.jpg?x-oss-process=image/resize,m_lfit,limit_0,h_300">
+            <img class="XhThemePagesSwiper-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nh4c73rj30ku08cq6e.jpg">
           </swiper-slide>
           <swiper-slide>
-            <img class="XhThemePagesSwiper-img" src="https://img1.xinhuashudian.com/images/2019/06/03/ddea4f31-117b-4965-93e0-6d16d3a77514.jpg?x-oss-process=image/resize,m_lfit,limit_0,h_300">
+            <img class="XhThemePagesSwiper-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nh4jkmcj30ku08cmzc.jpg">
           </swiper-slide>
           <swiper-slide>
-            <img class="XhThemePagesSwiper-img" src="https://img1.xinhuashudian.com/images/2019/06/03/e984e8f5-437f-4975-9f32-8061903f89a9.jpg?x-oss-process=image/resize,m_lfit,limit_0,h_300">
+            <img class="XhThemePagesSwiper-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nh4ektkj30ku08cgoa.jpg">
           </swiper-slide>
           <swiper-slide>
-            <img class="XhThemePagesSwiper-img" src="https://img1.xinhuashudian.com/images/2019/06/03/6af617e6-80b3-4d67-8ea9-9e854a68c596.jpg?x-oss-process=image/resize,m_lfit,limit_0,h_300">
+            <img class="XhThemePagesSwiper-img" src="https://ws1.sinaimg.cn/large/005S8gRNly1g50nh584kqj30ku08c77j.jpg">
           </swiper-slide>
           <div class="swiper-pagination"  slot="pagination"></div>
         </swiper>
@@ -38,11 +38,11 @@
               },
             }
           }
-        } 
+        }
     }
 </script>
 
-<style scoped>
+<style>
   .wrapper {
     overflow: hidden;
     width: 100%;

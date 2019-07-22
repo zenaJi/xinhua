@@ -21,7 +21,7 @@
       props:['indexSwiper'],
       mounted() {
         //轮播图
-        // this._initSwiper();
+        this._initSwiper();
       },
       updated(){
         //在获取完数据后，将swiper放在$nextTick下一个UI帧再初始化。
@@ -55,6 +55,6 @@
     }
 </script>
 
-<style scoped>
-  @import "../../assets/css/index.css";
+<style>
+  /*@import "../../assets/css/XhStyleOne.css";*/
 </style>

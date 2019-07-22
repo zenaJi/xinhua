@@ -9,7 +9,7 @@
             :key="item.id"
           >
             <div class="XhThemePagesIcon-icon-img">
-              <img class="XhThemePagesIcon-icon-img-content" :src="item.imgUrl">
+              <img class="XhThemePagesIcon-icon-img-content" :src="'http://api.hll666.xyz/api/xinhua/img?imgUrl='+urlEncode(item.imgUrl)">
             </div>
             <p class="XhThemePagesIcon-icon-desc">{{item.desc}}</p>
           </div>
@@ -25,7 +25,8 @@ export default {
   name: 'XhThemePagesIcon',
   data () {
     return {
-      iconList: [{
+      iconList: [
+          {
             id: "0001",
             imgUrl: "https://img1.xinhuashudian.com/images/2019/05/30/e6822971-4a3f-4dde-8128-5601d7519b71.png?x-oss-process=image/resize,m_lfit,limit_0,w_96,h_96",
             desc: "畅销榜"
@@ -71,10 +72,20 @@ export default {
       }
     }
   },
+  methods:{
+    urlEncode(str){
+      if(str.indexOf("https:")==-1){
+        str="https:"+str
+        return encodeURI(str)
+      }else{
+        return encodeURI(str)
+      }
+    },
+  }
 }
 </script>
 
-<style scoped>
+<style>
  .XhThemePagesIcon-icons .swiper-container{
     height: 0;
     padding-bottom: 50%;
